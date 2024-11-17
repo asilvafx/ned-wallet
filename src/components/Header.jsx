@@ -63,6 +63,15 @@ const Header = () => {
                     </button>
                     <div className="flex items-center gap-2 ">
                         <div className="items-center gap-2 me-4 hidden md:flex">
+
+                            <Link to="/sell">
+                                <button className="bg-secondary border text-color text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
+                                    <span className="w-auto h-5 flex gap-2 flex-nowrap items-center justify-center">
+                                        <FaPlus  />
+                                        <span className="uppercase font-semibold">Novo Anúncio</span>
+                                    </span>
+                                </button>
+                            </Link>
                              <Link to="/">
                                 <button className="bg-secondary border text-color text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
                                     <span className="w-5 h-5 flex items-center justify-center">
@@ -74,13 +83,6 @@ const Header = () => {
                                 <button className="bg-secondary border text-color text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
                                     <span className="w-5 h-5 flex items-center justify-center">
                                         <GoHeartFill className="text-lg" />
-                                    </span>
-                                </button>
-                             </Link>
-                            <Link to="/sell">
-                                <button className="bg-secondary border text-color text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
-                                    <span className="w-5 h-5 flex items-center justify-center">
-                                        <FaPlus className="text-lg" />
                                     </span>
                                 </button>
                              </Link>
@@ -129,7 +131,7 @@ const Header = () => {
                 <div className="flex-nowrap justify-start items-center w-full my-2 p-2 hidden md:flex overflow-x-auto whitespace-nowrap">
                     {categories.map(category => (
                         <Link to={`/${category.emoji}`} key={category.id} className="text-sm rounded-lg flex items-center gap-2 mr-4 p-2 bg-secondary ring-1 ring-gray-800 transition duration-200">
-                            <span className="text-md">{category.emoji}</span>
+
                             <span className="text-center text-md">{category.name}</span>
                         </Link>
                     ))}
