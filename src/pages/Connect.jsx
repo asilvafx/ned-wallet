@@ -190,14 +190,14 @@ const Connect = () => {
 
             <Header />
 
-            <div className="flex flex-col items-center justify-center min-h-screen p-4">
+            <div className="grid grid-cols-2 gap-4 items-center justify-center p-4">
 
-                <div className="bg-secondary border rounded-lg shadow-md p-6 w-full max-w-lg">
+                <div className="bg-secondary border rounded-lg shadow-md p-6 w-full w-full">
 
                     {!verified ? (
                         <>
                         <h1 className="text-xl md:text-2xl font-bold mb-8 text-center capitalize">
-                            Connect to Your Wallet
+                            Conecta-te à tua carteira
                         </h1>
 
                         <form onSubmit={handleLogin}>

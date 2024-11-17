@@ -7,7 +7,15 @@
       <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ItemSlider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemSlider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +52,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2oqG37nA32OsgDErzfmdewSrksl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -73,7 +84,7 @@
       <workItem from="1731589494232" duration="686000" />
       <workItem from="1731623551027" duration="7754000" />
       <workItem from="1731678316431" duration="44129000" />
-      <workItem from="1731857679963" duration="1161000" />
+      <workItem from="1731857679963" duration="7573000" />
     </task>
     <servers />
   </component>

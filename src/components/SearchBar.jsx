@@ -73,9 +73,9 @@ const SearchBar = () => {
                 </div>
 
                 <div className="flex p-0 md:p-1">
-                    <button type="submit" className="w-full px-4 py-3 flex items-center gap-2 rounded transition duration-200 bg-blue-500 text-white hover:bg-blue-600">
-                        <FaSearch />
-                        <span className="md:hidden">Search</span>
+                    <button type="submit" className="w-full px-4 py-2 bg-primary text-color flex items-center gap-2 rounded transition duration-200">
+                        <FaSearch className="text-lg" />
+                        <span className="md:hidden">Pesquisar</span>
                     </button>
                 </div>
             </form>

@@ -22,7 +22,7 @@ const Footer = () => {
                     <GoHeartFill className="text-xl" />
                 </Link>
                 <Link to="/sell" className="text-center p-2">
-                    <div className="bg-alt text-alt p-3 rounded-full">
+                    <div className="bg-primary text-color p-3 rounded-full">
                         <FaPlus className="text-2xl" />
                     </div>
                 </Link>
