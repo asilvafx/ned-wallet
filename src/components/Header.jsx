@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoIosWallet } from "react-icons/io";
-import { Link } from 'react-router-dom';
-import { IoMdApps } from "react-icons/io";
+import { Link, useNavigate } from 'react-router-dom';
 import { FaPowerOff } from "react-icons/fa6";
 import { GoHomeFill, GoHeartFill } from "react-icons/go";
 import { FaPlus } from "react-icons/fa6";
@@ -9,20 +8,23 @@ import { IoIosChatbubbles } from "react-icons/io";
 import { RiUser4Fill } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 import Cookies from 'js-cookie';
+import { TbDotsVertical } from "react-icons/tb";
 import { fetchUserData, fetchCategories } from "../data/db";
+import Offcanvas from './Offcanvas';
+import {SiteUrl} from "../data/api";
+
 
 const Header = () => {
     const isLoggedIn = Cookies.get('isLoggedIn');
     const walletId = Cookies.get('uid');
-
-    const [userInfo, setUserInfo] = useState({ }); // Initialize with default value
+    const [userInfo, setUserInfo] = useState({});
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const [showOffcanvas, setShowOffcanvas] = useState(false); // State to control offcanvas visibility
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
-
         const fetchCategoriesData = async () => {
             const fetchedCategories = await fetchCategories();
             setCategories(fetchedCategories);
@@ -47,21 +49,37 @@ const Header = () => {
         };
 
         fetchData();
-    }, [walletId]); // Add walletId as a dependency
+    }, [walletId]);
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault(); // Prevent default form submission
+        const searchQuery = e.target.elements.search.value; // Get the search query
+        if (searchQuery) {
+            navigate(`/search?query=${encodeURIComponent(searchQuery)}`); // Redirect to search page
+        }
+    };
 
     if (loading) {
-        return <div>Loading...</div>; // Optional loading state
+        return <div>Loading...</div>;
     }
+
 
     return (
         <>
             <header className="pt-4 px-4 md:fixed w-full top-0 left-0 right-0 bg-body">
                 <div className="flex flex-nowrap justify-between items-center w-full">
-                    <button className="text-sm p-2 flex rounded-lg">
-                        <span className="w-5 h-5 flex items-center justify-center">
-                            <IoMdApps className="text-lg" />
-                        </span>
-                    </button>
+                    <div className="flex flex-nowrap items-center gap-4">
+                        <button className="btn-secondary border text-sm p-2 flex lg:hidden rounded-lg"
+                                onClick={() => setShowOffcanvas(true)}>
+                            <span className="w-5 h-5 flex items-center justify-center">
+                                <TbDotsVertical className="text-lg" />
+                            </span>
+                        </button>
+                        <Link to="/" className="relative">
+                        <img src={`${SiteUrl}/public/uploads/files/ned_full.png`} className="h-11 w-auto filter invert"></img>
+                        </Link>
+                    </div>
+
                     <div className="flex items-center gap-2 ">
                         <div className="items-center gap-2 hidden md:flex">
                             <div className="items-center text-sm hidden lg:flex">
@@ -151,6 +169,8 @@ const Header = () => {
                 </div>
             </header>
             <div className="header-divider min-h-32 hidden md:block"></div>
+            <Offcanvas show={showOffcanvas} onClose={() => setShowOffcanvas(false)} />
+
         </>
     );
 }

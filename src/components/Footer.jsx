@@ -10,7 +10,22 @@ const Footer = () => {
 
     return (
         <>
-            <div className="footer-divider min-h-28">
+            {/* Disclaimer and Legal Information */}
+            <div className="px-4 py-3 text-center text-sm mt-10">
+                <p className="mb-2">
+                    © {new Date().getFullYear()} Your Company Name. All rights reserved.
+                </p>
+                <p className="mb-2 text-muted">
+                    This website is intended for informational purposes only. The content provided is not legal advice and should not be relied upon as such.
+                </p>
+                <div className="flex justify-center space-x-4">
+                    <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>
+                    <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
+                    <Link to="/disclaimer" className="text-primary hover:underline">Disclaimer</Link>
+                </div>
+            </div>
+
+            <div className="footer-divider min-h-28 md:min-h-10">
 
             </div>
 

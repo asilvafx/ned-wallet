@@ -6,9 +6,8 @@ import Footer from "../components/Footer";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { BaseUrl, Key } from '../data/api';
-import { encryptPassword, decryptPassword } from '../lib/crypto';
-import worldcoinIcon from '../assets/worldcoin.svg';
+import {BaseUrl, Key, SiteUrl} from '../data/api';
+import { encryptPassword, decryptPassword } from '../lib/crypto'; 
 import Web3 from 'web3';
 import { IDKitWidget } from '@worldcoin/idkit';
 import { balanceOfABI } from '../data/abi';
@@ -250,7 +249,7 @@ const Connect = () => {
                                     className ="px-4 py-2 rounded-lg capitalize w-full flex gap-2 items-center justify-center text-center"
                                     onClick={open}
                                     disabled={loading}> {/* Disable button if loading */}
-                                    <img src={worldcoinIcon} alt="Worldcoin Logo" className="w-5 h-5" />
+                                    <img src={`${SiteUrl}/public/uploads/files/worldcoin.svg`} alt="Worldcoin Logo" className="w-5 h-5" />
                                     <span>
                                         Sign in with World ID
                                     </span>
