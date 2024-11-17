@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/WWW/app/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/pragmarx/google2fa" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/composer" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/yohang88/letter-avatar" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/intervention/image" />
+    </include_path>
+  </component>
+</project>

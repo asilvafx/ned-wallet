@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/WWW/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="composer.json" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/WWW/app/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/pragmarx/google2fa" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/composer" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/yohang88/letter-avatar" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/WWW/app/vendor/intervention/image" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="2oqG37nA32OsgDErzfmdewSrksl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/pages" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="" />
+      <created>1731589492381</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731589492381</updated>
+      <workItem from="1731589494232" duration="686000" />
+      <workItem from="1731623551027" duration="7754000" />
+      <workItem from="1731678316431" duration="44129000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="446" y="239" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1731679127906">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="446" y="239" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1440.817@0.25.1440.817" timestamp="1731679127906" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../my-app/src/pages/Register.jsx</url>
+          <line>4</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/SearchBar.jsx</url>
+          <line>81</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

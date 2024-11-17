@@ -1,0 +1,31 @@
+.select__control, .select__control > * {
+    background: transparent !important;
+    border: 0 !important;
+    height: 100%;
+}
+.select__menu {
+    background: var(--background-color) !important;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.select__menu-list {
+    background: transparent;
+}
+.select__option.select__option--is-focused {
+    background: var(--background-color);
+    color: var(--primary-color);
+}
+.select__option.select__option--is-selected {
+    background: var(--alt-color);
+    color: var(--background-color);
+    border-radius: 1rem;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.select__single-value {
+    color: var(--text-color) !important;
+}
+header {
+    z-index: 9;
+}

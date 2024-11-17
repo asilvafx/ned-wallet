@@ -1,0 +1,44 @@
+{
+    "name": "pigmilcom/free-api",
+    "type": "project",
+    "description": "Composer helps you declare, manage and install dependencies of PHP projects. It ensures you have the right stack everywhere.",
+    "keywords": [
+        "package",
+        "dependency",
+        "autoload"
+    ],
+    "homepage": "https://www.pigmil.com",
+    "license": "MIT",
+    "config": {
+        "vendor-dir": "app/vendor/",
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Pigmilcom\\Webapp\\": "app/vendor/src"
+        }
+    },
+    "authors": [
+        {
+            "name": "PIGMIL",
+            "email": "hello@pigmil.com",
+            "homepage": "https://www.pigmil.com"
+        },
+        {
+            "name": "Antonio da Silva",
+            "email": "antonio@pigmil.com",
+            "homepage": "https://www.pigmil.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@pigmil.com"
+    },
+    "require": {
+        "pragmarx/google2fa": "^8.0",
+        "yohang88/letter-avatar": "^2.3",
+        "bacon/bacon-qr-code": "^3.0"
+    }
+}
