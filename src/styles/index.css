@@ -155,7 +155,10 @@
   }
   .border {
     border: 1px solid var(--border-color) !important; 
-  } 
+  }
+  .border-color {
+    border-color: var(--border-color) !important;
+  }
   .border-primary {
     border-color: var(--primary-color) !important;  
   }

@@ -3,17 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/worldcoin.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/vite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ItemCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +76,7 @@
       <workItem from="1731589494232" duration="686000" />
       <workItem from="1731623551027" duration="7754000" />
       <workItem from="1731678316431" duration="44129000" />
-      <workItem from="1731857679963" duration="11292000" />
+      <workItem from="1731857679963" duration="12771000" />
     </task>
     <servers />
   </component>

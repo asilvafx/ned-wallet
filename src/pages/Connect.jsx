@@ -7,7 +7,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import {BaseUrl, Key, SiteUrl} from '../data/api';
-import { encryptPassword, decryptPassword } from '../lib/crypto'; 
+import { encryptPassword, decryptPassword } from '../lib/crypto';
 import Web3 from 'web3';
 import { IDKitWidget } from '@worldcoin/idkit';
 import { balanceOfABI } from '../data/abi';

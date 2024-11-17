@@ -41,7 +41,7 @@ const SearchBar = () => {
                         placeholder="O que estás à procura?"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full p-3 border rounded-lg focus:outline-none"
+                        className="w-full p-2 border rounded-lg focus:outline-none"
                     />
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                         <FaSearch className="text-gray-400" />
@@ -54,7 +54,7 @@ const SearchBar = () => {
                         value={selectedCity}
                         onChange={setSelectedCity}
                         options={cities}
-                        className="bg-secondary border rounded-lg w-full h-full p-1"
+                        className="bg-secondary border rounded-lg w-full h-full p-0"
                         classNamePrefix="select"
                         placeholder="Todo o país"
                     />
@@ -66,7 +66,7 @@ const SearchBar = () => {
                         value={selectedType}
                         onChange={setSelectedType}
                         options={types}
-                        className="bg-secondary border rounded-lg w-full h-full p-1"
+                        className="bg-secondary border rounded-lg w-full h-full p-0"
                         classNamePrefix="select"
                         placeholder="Mostrar tudo"
                     />

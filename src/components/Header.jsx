@@ -66,7 +66,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="pt-4 px-4 md:fixed w-full top-0 left-0 right-0 bg-body">
+            <header className="py-4 px-4 md:fixed w-full top-0 left-0 right-0 bg-body border-b border-color">
                 <div className="flex flex-nowrap justify-between items-center w-full">
                     <div className="flex flex-nowrap items-center gap-4">
                         <button className="btn-secondary border text-sm p-2 flex lg:hidden rounded-lg"
