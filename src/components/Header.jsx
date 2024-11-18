@@ -12,6 +12,7 @@ import { TbDotsVertical } from "react-icons/tb";
 import { fetchUserData, fetchCategories } from "../data/db";
 import Offcanvas from './Offcanvas';
 import {SiteUrl} from "../data/api";
+import HeaderSkeleton from "./skeleton/HeaderSkeleton";
 
 
 const Header = () => {
@@ -60,13 +61,13 @@ const Header = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <HeaderSkeleton />;
     }
 
 
     return (
         <>
-            <header className="py-4 px-4 md:fixed w-full top-0 left-0 right-0 bg-body border-b border-color">
+            <header className="pt-3 pb-2 px-4 md:fixed w-full top-0 left-0 right-0 bg-body border-b border-color">
                 <div className="flex flex-nowrap justify-between items-center w-full">
                     <div className="flex flex-nowrap items-center gap-4">
                         <button className="btn-secondary border text-sm p-2 flex lg:hidden rounded-lg"
@@ -159,10 +160,9 @@ const Header = () => {
                         )}
                     </div>
                 </div>
-                <div className="flex-nowrap justify-start items-center w-full px-2 py-4 hidden md:flex overflow-x-auto whitespace-nowrap">
+                <div className="flex-nowrap justify-start items-center w-full px-2 pt-4 pb-2 hidden md:flex overflow-x-auto whitespace-nowrap">
                     {categories.map(category => (
                         <Link to={`/${category.emoji}`} key={category.id} className="text-sm rounded-lg flex items-center gap-2 mr-4 p-2 bg-secondary ring-1 ring-gray-800 transition duration-200">
-
                             <span className="text-center text-md">{category.name}</span>
                         </Link>
                     ))}

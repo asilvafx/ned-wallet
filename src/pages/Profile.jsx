@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { BaseUrl, Key } from '../data/api';
+import {BaseUrl, Key, SiteUrl} from '../data/api';
 import { fetchUserData } from '../data/db';
+import NotLoggedIn from '../components/NotLoggedIn';
+import { fetchItems } from "../data/db";
+import ItemCard from "../components/ItemCard";
 
 const Profile = () => {
+    const isLoggedIn = Cookies.get('isLoggedIn');
     const walletId = Cookies.get('uid');
+    const [items, setItems] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -19,9 +23,20 @@ const Profile = () => {
     });
 
     useEffect(() => {
+
+        const fetchAllItems = async () => {
+            const fetchedItems = await fetchItems();
+            setItems(fetchedItems);
+        };
+
+        fetchAllItems();
+
         const fetchData = async () => {
+            if (!walletId) {
+                setLoading(false);
+                return;
+            }
             try {
-                if(!walletId){ return; }
                 const userData = await fetchUserData(walletId);
                 if (userData) {
                     setUserInfo(userData);
@@ -41,7 +56,7 @@ const Profile = () => {
         };
 
         fetchData();
-    }, []);
+    }, [walletId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -54,11 +69,10 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const walletId = Cookies.get('uid');
             const response = await axios.put(`${BaseUrl}/accounts/world_id/${walletId}`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${Key}`, // Replace with your actual API key
+                    'Authorization': `Bearer ${Key}`,
                 },
             });
 
@@ -77,8 +91,16 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
 
+    if (!isLoggedIn) {
+        return (
+            <>
+            <NotLoggedIn text="Por favor, inicia sessão para veres o teu perfil" />
+            </>
+        );
+    }
+
     if (error) {
-        return <div>{error}</div>;
+        return <div className="text-red-500 text-center">{error}</div>;
     }
 
     return (
@@ -87,52 +109,53 @@ const Profile = () => {
                 <title>Profile</title>
                 <meta name='description' content='User  profile page' />
             </Helmet>
-            <Header />
-            <div className="px-4 mt-8">
-                <h1 className="text-xl mb-4">Profile</h1>
-                <form onSubmit={handleSubmit} className="bg-secondary border rounded-lg p-4">
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Username</label>
-                        <input
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                            required
-                        />
+            <div className="px-4 mt-6">
+                <div className="bg-secondary border rounded-lg p-6 mb-6">
+                    <div className="flex justify-between items-center mb-6">
+                        <h1 className="text-2xl font-bold capitalize">O Meu Perfil</h1>
+                        <span className="relative">
+                        <button
+                        onClick={() => setEditing(true)}
+                        className="bg-primary text-white py-2 px-4 rounded-md"
+                        >
+                        Editar Perfil
+                        </button>
+                        </span>
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                            required
+                    <div className="flex items-center mb-4">
+                        <img
+                            src={userInfo.profileImage || SiteUrl + '/public/uploads/files/placeholder.png' } // Use a placeholder if no image
+                            alt="Profile"
+                            className="w-24 h-24 rounded-full border-2 border-gray-300 mr-4 p-1"
                         />
+                        <div>
+                            <h2 className="text-xl font-semibold">{userInfo.username ?? 'NA'}</h2>
+                            {userInfo.email ? (
+                                <p className="text-gray-600">{userInfo.email}</p>
+                            ) : (
+                                <Link to="/profile/edit" className="text-blue-500 underline">
+                                    Adicionar endereço de email
+                                </Link>
+                            )}
+
+                        </div>
                     </div>
-                    {/* Optional <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                        />
+
+                </div>
+
+                <div className="bg-secondary border rounded-lg p-6">
+                    <h2 className="text-xl font-bold mb-4 capitalize flex items-center">
+                        <span className="flashing-bullet mr-2"></span>
+                        Anúncios Activos
+                    </h2>
+                    {/* User listings, replace with actual data */}
+                    <div className="grid grid-cols-4 gap-2">
+                        {items.map((item) => (
+                            <ItemCard key={item.id} item={item} />
+                        ))}
                     </div>
-                    {/* Add other fields as necessary */}
-                    <button
-                        type="submit"
-                        className="w-full bg-primary text-white py-2 rounded-md"
-                    >
-                        Update Profile
-                    </button>
-                </form>
+                </div>
             </div>
-            <Footer />
         </>
     );
 };

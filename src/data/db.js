@@ -19,6 +19,24 @@ export const fetchUserMessages = async (walletId) => {
     }
 };
 
+// Function to fetch user messages based on wallet ID
+export const fetchUserFavorites = async (walletId) => {
+    try {
+        const response = await axios({
+            url: `${BaseUrl}/watchlist/user/${walletId}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Key}`,
+            }
+        });
+        return response.data.message; // Return the response data
+    } catch (error) {
+        console.error("Error fetching user messages:", error);
+        return null; // Return null on error
+    }
+};
+
 // Function to fetch user data based on wallet ID
 export const fetchUserData = async (walletId) => {
     try {
@@ -51,16 +69,6 @@ export const updateUserBalance = async (walletId, balanceData) => {
     } catch (error) {
         console.error("Error updating user balance:", error);
         return null; // Return null on error
-    }
-};
-
-// Existing function to fetch users
-export const fetchUsers = async () => {
-    try {
-        // Your logic here
-    } catch (error) {
-        console.error("Error fetching users:", error);
-        return []; // Return an empty array on error
     }
 };
 
@@ -170,24 +178,6 @@ export const fetchItems = async () => [
         status: 1, // 1 for available
         digital: 0, // 1 for true (is a digital product)
         service: 0, // 0 for false (not a service)
-    },
-];
-
-// Function to fetch User Favorite Items
-export const fetchUserFavorites = [
-    {
-        id: 1,
-        item: 'uid-1',
-        user: 'Favorite Item 1',
-    },
-    {
-        id: 2,
-        item: 'uid-2',
-        user: 'Favorite Item 12',
-    },
-    {
-        item: 'uid-3',
-        user: 'Favorite Item 3',
     },
 ];
 

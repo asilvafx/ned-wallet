@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { fetchUserMessages } from '../data/db'; // Assume this function fetches messages from your API
+import { fetchUserMessages } from '../data/db';
+import Cookies from 'js-cookie';
+import NotLoggedIn from '../components/NotLoggedIn';
+import {Link} from 'react-router-dom';
 
 const Messages = () => {
+    const isLoggedIn = Cookies.get('isLoggedIn');
+    const walletId = Cookies.get('uid');
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchMessages = async () => {
+            if (!isLoggedIn) {
+                setLoading(false);
+                return;
+            }
             try {
-                const data = await fetchUserMessages(); // Fetch messages from the API
-                setMessages(data); // Set the messages state
+                const data = await fetchUserMessages(walletId);
+                setMessages(data);
             } catch (fetchError) {
                 setError('Failed to load messages.');
             } finally {
@@ -22,14 +29,22 @@ const Messages = () => {
         };
 
         fetchMessages();
-    }, []);
+    }, [isLoggedIn]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="text-center mt-4">Loading messages...</div>;
+    }
+
+    if (!isLoggedIn) {
+        return (
+            <>
+                <NotLoggedIn text="Por favor, inicia sessão para veres as tuas mensagens." />
+            </>
+        );
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return <div className="text-red-500 text-center">{error}</div>;
     }
 
     return (
@@ -39,29 +54,41 @@ const Messages = () => {
                 <meta name='description' content='User  messages and chat' />
             </Helmet>
 
-            <Header />
-
-            <div className="px-4 mt-8">
-                <h1 className="text-xl mb-4">Mensagens</h1>
+            <div className="px-4 mt-6">
+                <h1 className="text-2xl font-bold mb-4">Mensagens</h1>
 
                 {messages.length === 0 ? (
                     <div className="text-start text-gray-500">
-                        <p>No messages to show. Start chatting with other users!</p>
+                        <p>Não há mensagens para mostrar. A tua caixa de entrada está vazia.</p>
+
+                        <Link to="/" >
+                            <button className="btn mt-4 py-2 px-4 rounded-md">
+                                Ir para a Página Inicial
+                            </button>
+                        </Link>
                     </div>
                 ) : (
-                    <div className="bg-secondary border rounded-lg p-4">
-                        {messages.map((message, index) => (
-                            <div key={index} className="mb-4">
-                                <div className="font-semibold">{message.sender}</div>
-                                <div className="text-gray-700">{message.content}</div>
-                                <div className="text-sm text-gray-500">{new Date(message.timestamp).toLocaleString()}</div>
+                    <div className="bg-white border rounded-lg shadow-md p-4">
+                        {messages.map((message) => (
+                            <div key={message.id} className="mb-4 border-b pb-2">
+                                <div className="font-semibold text-gray-800">
+                                    From: {message.chat_from} <span className="text-gray-500">to {message.chat_to}</span>
+                                </div>
+                                <div className="text-gray-700">{message.msg}</div>
+                                <div className="text-sm text-gray-500">
+                                    {new Date(message.timestamp).toLocaleString('pt-PT', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                    })}
+                                </div>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
-
-            <Footer />
         </>
     );
 };

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import {BaseUrl, Key, SiteUrl} from '../data/api';
+import { BaseUrl, Key, SiteUrl } from '../data/api';
 import { encryptPassword, decryptPassword } from '../lib/crypto';
 import Web3 from 'web3';
 import { IDKitWidget } from '@worldcoin/idkit';
@@ -17,35 +15,32 @@ const Connect = () => {
     const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(''); // Declare error state
-    const [verified, setVerified] = useState(false); // Define verified state
-    const [loading, setLoading] = useState(false); // Define loading state
-    const navigate = useNavigate(); // Initialize navigate
-    const [web3, setWeb3] = useState(null); // Declare Web3 state
+    const [error, setError] = useState('');
+    const [verified, setVerified] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const [web3, setWeb3] = useState(null);
 
     const WEB3_TOKEN_PROVIDER = "https://polygon-mainnet.infura.io/v3/920a2e9becd34f0fb89a37dde7b3fb88";
     const WEB3_TOKEN_CONTRACT = "0x149a08fdc7FCEF5B67A69eb82E9111a0F7E2b450";
 
-    const WLD_Action = "auth"; // Action name
-    const WLD_AppId = "app_22f503b7107497ff51011caa16433fd2"; // App ID from Developer Portal
-    const WLD_VerificationLevel = "orb"; // Verification level
-    const WLD_ServerUrl = "https://world-auth.dreamhosters.com/"; // Server URL
+    const WLD_Action = "auth";
+    const WLD_AppId = "app_22f503b7107497ff51011caa16433fd2";
+    const WLD_VerificationLevel = "orb";
+    const WLD_ServerUrl = "https://world-auth.dreamhosters.com/";
 
     useEffect(() => {
-         const newWeb3 = new Web3(new Web3.providers.HttpProvider(WEB3_TOKEN_PROVIDER));
-        setWeb3(newWeb3); // Set the Web3 instance
+        const newWeb3 = new Web3(new Web3.providers.HttpProvider(WEB3_TOKEN_PROVIDER));
+        setWeb3(newWeb3);
     }, []);
 
     const handleVerify = async (proof) => {
         try {
             const modifiedProof = {
                 ...proof,
-                action: WLD_Action // action name you want to use
+                action: WLD_Action,
             };
 
-            console.log(modifiedProof);
-
-            // Call your API route to verify the proof
             const res = await fetch(WLD_ServerUrl, {
                 method: 'POST',
                 headers: {
@@ -55,18 +50,16 @@ const Connect = () => {
             });
 
             if (!res.ok) {
-                throw new Error('Verification failed.');
+                throw new Error('Verificação falhou.');
             }
 
-            // If verification is successful, update the verified state
             const response = await res.json();
-            const nullifierHash = response.data.nullifier_hash; // Accessing nullifier_hash
+            const nullifierHash = response.data.nullifier_hash;
 
             const widResponse = await fetchUserData(nullifierHash);
 
             if (widResponse) {
                 if (widResponse.message && widResponse.message.length > 0) {
-                    // Wallet already registered
                     const userResponse = widResponse.message[0];
                     let walletBalance = parseFloat("0.0000");
                     const contract = new web3.eth.Contract(balanceOfABI, WEB3_TOKEN_CONTRACT);
@@ -80,10 +73,9 @@ const Connect = () => {
                         }
 
                         await updateUserBalance(nullifierHash, balanceData)
-
                     } catch (error) {
                         console.log(error);
-                        alert('Oops! Failed to fetch account information.');
+                        alert('Oops! Falha ao buscar informações da conta.');
                         return false;
                     }
 
@@ -92,7 +84,6 @@ const Connect = () => {
 
                     setVerified(true);
                 } else {
-
                     const walletAccount = web3.eth.accounts.create();
                     const walletBalance = parseFloat("0.0000");
 
@@ -102,7 +93,7 @@ const Connect = () => {
                         wallet_sk: encryptPassword(walletAccount.privateKey),
                         last_balance: walletBalance
                     }
-                    // Create new wallet and store user data
+
                     const saveUserResponse = await axios.post(`${BaseUrl}/accounts`, userData, {
                         headers: {
                             'Content-Type': 'application/json',
@@ -111,38 +102,37 @@ const Connect = () => {
                     });
 
                     if (saveUserResponse.data.status === 'success') {
-
                         Cookies.set('isLoggedIn', 'true', { path: '', secure: true, sameSite: 'strict' });
                         Cookies.set('uid', nullifierHash, { path: '', secure: true, sameSite: 'strict' });
 
                         setVerified(true);
                     } else {
                         console.log(saveUserResponse.data);
-                        alert('Oops! Some problem occurred, please try again later.');
+                        alert('Ops! Algo deu errado, tenta novamente mais tarde.');
                         return false;
                     }
                 }
             } else {
-                alert('Some error occurred. Please, try again later.');
+                alert('Algo deu errado. Por favor, tenta novamente mais tarde.');
                 console.log(widResponse.data);
                 return false;
             }
         } catch (error) {
-            console.error('Error during verification:', error);
+            console.error('Erro durante a verificação:', error);
         }
     };
 
     const onSuccess = () => {
-        setLoading(true); // Set loading to true
+        setLoading(true);
         setTimeout(() => {
             window.location.href = "/";
         }, 1500);
     };
 
     const handleLogin = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         try {
-            setError(""); // Clear any previous error
+            setError("");
 
             const response = await axios({
                 url: `${BaseUrl}/users/email/${email}`,
@@ -154,29 +144,27 @@ const Connect = () => {
             });
 
             if (!response.data.message) {
-                setError("Invalid email or password.");
+                setError("Email ou senha inválidos.");
                 return false;
             } else {
                 const userCrypt = response.data.message[0].crypt;
 
                 if (userCrypt && decryptPassword(userCrypt) === password) {
-                    alert('You have been successfully logged in!');
+                    alert('Login bem-sucedido!');
 
-                    // Store user info in Cookies
                     Cookies.set('isLoggedIn', 'true', { path: '', secure: true, sameSite: 'strict' });
-                    Cookies.set('uid', response.data.message[0].uid, { path: '', secure: true, sameSite: 'strict' }); // Assuming uid is a field in the response
+                    Cookies.set('uid', response.data.message[0].uid, { path: '', secure: true, sameSite: 'strict' });
 
-                    // Navigate to user dashboard or home page
                     navigate('/');
                     return false;
                 } else {
-                    setError("Invalid email or password.");
+                    setError("Email ou senha inválidos.");
                     return false;
                 }
             }
         } catch (err) {
-            console.error("Login error:", err);
-            setError("Error logging in. Please try again.");
+            console.error("Erro de login:", err);
+            setError("Erro ao fazer login. Tente novamente.");
         }
     };
 
@@ -184,91 +172,132 @@ const Connect = () => {
         <>
             <Helmet>
                 <title>{t('Connect')}</title>
-                <meta name='description' content={t('Connect to your account')} />
+                <meta name="description" content={t('Conecta à tua conta')} />
             </Helmet>
 
-            <Header />
 
-            <div className="grid grid-cols-2 gap-4 items-center justify-center p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 mt-6">
 
-                <div className="bg-secondary border rounded-lg shadow-md p-6 w-full w-full">
-
+                <div className="bg-secondary border rounded-lg shadow-lg p-6">
                     {!verified ? (
                         <>
-                        <h1 className="text-xl md:text-2xl font-bold mb-8 text-center capitalize">
-                            Conecta-te à tua carteira
-                        </h1>
+                            <h1 className="text-2xl font-bold text-center mb-6 text-primary">
+                                Conecta-te à tua conta
+                            </h1>
 
-                        <form onSubmit={handleLogin}>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-600" htmlFor="email">
-                                    Email Address
-                                </label>
-                                <input
-                                    type="text"
-                                    id="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="mt-1 block w-full border rounded-md p-2"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-600" htmlFor="password">
-                                    Password
-                                </label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="mt-1 block w-full border rounded-md p-2"
-                                    required
-                                />
-                            </div>
-                            {error && <p className="text-red-500 text-sm">{error}</p>} {/* Display error message */}
-                            <button type="submit" className="w-full btn-primary rounded-md py-2 mt-2 hover:bg-blue-600">
-                                Log In
-                            </button>
-                        </form>
-                        <div className="flex items-center justify-between my-4">
-                            <hr className="flex-grow border-gray-300" />
-                            <span className="mx-2 text-gray-500 uppercase text-xs">
-                                or
-                            </span>
-                            <hr className="flex-grow border-gray-300" />
-                        </div>
-                        <IDKitWidget
-                            app_id={WLD_AppId} // obtained from the Developer Portal
-                            action={WLD_Action} // this is your action name from the Developer Portal
-                            verification_level={WLD_VerificationLevel}  // Use the verification level
-                            handleVerify={handleVerify}
-                            onSuccess={onSuccess}>
-                            {({ open }) =>
+                            <form onSubmit={handleLogin} className="space-y-4">
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+                                        Endereço de Email
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full p-3 border rounded-md mt-2"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+                                        Senha
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="w-full p-3 border rounded-md mt-2"
+                                        required
+                                    />
+                                </div>
+
+                                {error && <p className="text-red-500 text-sm">{error}</p>}
+
                                 <button
-                                    className ="px-4 py-2 rounded-lg capitalize w-full flex gap-2 items-center justify-center text-center"
-                                    onClick={open}
-                                    disabled={loading}> {/* Disable button if loading */}
-                                    <img src={`${SiteUrl}/public/uploads/files/worldcoin.svg`} alt="Worldcoin Logo" className="w-5 h-5" />
-                                    <span>
-                                        Sign in with World ID
-                                    </span>
+                                    type="submit"
+                                    className="w-full py-3 mt-4 bg-primary text-color rounded-md"
+                                >
+                                    Entrar
                                 </button>
-                            }
-                        </IDKitWidget>
+                            </form>
+
+                            <div className="flex items-center justify-center my-6">
+                                <hr className="w-full border-gray-300" />
+                                <span className="mx-2 text-gray-500 text-sm">ou</span>
+                                <hr className="w-full border-gray-300" />
+                            </div>
+
+                            <IDKitWidget
+                                app_id={WLD_AppId}
+                                action={WLD_Action}
+                                verification_level={WLD_VerificationLevel}
+                                handleVerify={handleVerify}
+                                onSuccess={onSuccess}
+                            >
+                                {({ open }) => (
+                                    <button
+                                        className="w-full py-3 mt-4 rounded-md flex items-center justify-center gap-2 hover:bg-green-600"
+                                        onClick={open}
+                                        disabled={loading}
+                                    >
+                                        <img src={`${SiteUrl}/public/uploads/files/worldcoin.svg`} alt="Worldcoin Logo" className="w-5 h-5" />
+                                        <span>Entrar com World ID</span>
+                                    </button>
+                                )}
+                            </IDKitWidget>
                         </>
                     ) : (
-                        <div className="flex flex-col">
-                            <h1 className="text-xl md:text-2xl font-bold mb-8 text-center capitalize">
-                                🎉 Successfully connected!
-                            </h1>
-                            <p>You are now being redirected..</p>
+                        <div className="text-center">
+                            <h2 className="text-2xl font-semibold mb-4 text-green-600">
+                                🎉 Conexão bem-sucedida!
+                            </h2>
+                            <p>Estás a ser redirecionado...</p>
                         </div>
                     )}
                 </div>
+
+                <div className="bg-secondary border rounded-lg shadow-lg p-6">
+                    <h2 className="text-2xl font-semibold text-center mb-6 text-primary">
+                        Criar Nova Conta?
+                    </h2>
+                    <p className="text-color mb-4">
+                        Para criares uma nova conta, precisas primeiro verificar a tua identidade através da verificação do Orb da World ID.
+                        Isto assegura que apenas utilizadores verificados possam criar uma conta.
+                    </p>
+                    <p className="text-gray-500 mb-6 text-lg">
+                        Segue estes passos:
+                    </p>
+                    <ol className="list-decimal list-inside pl-4 space-y-2 text-color">
+                        <li>Clica no botão "Entrar com World ID".</li>
+                        <li>Completa o processo de verificação na aplicação Worldcoin.</li>
+                        <li>Uma vez autorizado, poderás aceder à tua conta e carteira NED.</li>
+                    </ol>
+                </div>
             </div>
 
-            <Footer />
+            <div className="relative p-4 mt-6">
+                <div className="bg-primary border rounded-lg shadow-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-center text-color mb-6">Como Começar em 3 Passos</h2>
+                    <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-800">
+                        <li className="flex flex-col">
+                            <span className="text-3xl">1.</span>
+                            <span className="text-lg">Verifica a tua identidade usando o Orb da Worldcoin. Este processo é obrigatório.</span>
+                        </li>
+                        <li className="flex flex-col">
+                            <span className="text-3xl">2.</span>
+                            <span className="text-lg">Entra na tua conta com o teu World ID. Uma nova carteira digital irá ser criada para ti.</span>
+                        </li>
+                        <li className="flex flex-col">
+                            <span className="text-3xl">3.</span>
+                            <span className="text-lg">Explora todas as funcionalidades. Começa a comprar e a vender!</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
         </>
     );
 };

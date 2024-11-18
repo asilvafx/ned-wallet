@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 import ItemSlider from '../components/ItemSlider';
 import AutoplaySlider from '../components/AutoplaySlider';
 import SearchBar from '../components/SearchBar';
@@ -50,9 +48,7 @@ const Home = () => {
                 <meta name='description' content={t('seo_description')} />
             </Helmet>
 
-            <Header />
-
-            <div className="px-4 mt-8">
+            <div className="px-4 mt-6">
                 {/* Search Bar Section */}
                 <SearchBar />
 
@@ -97,7 +93,6 @@ const Home = () => {
 
             </div>
 
-            <Footer />
         </>
     );
 }

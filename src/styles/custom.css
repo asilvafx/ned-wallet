@@ -29,3 +29,22 @@
 header {
     z-index: 9;
 }
+.flashing-bullet {
+    width: 10px; /* Adjust size */
+    height: 10px; /* Adjust size */
+    background-color: #6a9e1c; /* Bullet color */
+    border-radius: 50%; /* Make it a circle */
+    animation: flash 2s infinite; /* Animation */
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        opacity: 0.5; /* Invisible */
+    }
+    100% {
+        opacity: 1; /* Back to fully visible */
+    }
+}

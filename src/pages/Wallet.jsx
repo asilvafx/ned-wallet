@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { GiWallet } from "react-icons/gi";
 import Cookies from 'js-cookie';
 import { IoQrCode, IoSend } from "react-icons/io5";
@@ -58,9 +56,7 @@ const Wallet = () => {
                 <meta name='description' content={t('Manage your wallet')} />
             </Helmet>
 
-            <Header />
-
-            <div className="px-4 mt-8">
+            <div className="px-4 mt-6">
                 <h1 className="text-xl mb-4">My Wallet</h1>
                 <div className="bg-secondary border rounded-lg p-4 gap-2 w-full flex flex-col justify-center items-center text-center">
                     <div className="w-full relative mb-8">
@@ -115,7 +111,6 @@ const Wallet = () => {
                 </div>
             </div>
 
-            <Footer />
         </>
     );
 };

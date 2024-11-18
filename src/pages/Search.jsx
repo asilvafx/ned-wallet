@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const Search = () => {
     const [items, setItems] = useState([]);
@@ -47,9 +45,7 @@ const Search = () => {
                 <meta name="description" content={`Resultados para "${searchQuery}" em ${city || 'todas as cidades'} ${type ? `(${type})` : ''}`} />
             </Helmet>
 
-            <Header />
-
-            <div className="p-6">
+            <div className="p-4 mt-6">
                 <h1 className="text-2xl font-bold mb-4">Resultados da Pesquisa</h1>
 
                 {loading && <p>Loading...</p>}
@@ -69,7 +65,6 @@ const Search = () => {
                 )}
             </div>
 
-            <Footer />
         </div>
     );
 };

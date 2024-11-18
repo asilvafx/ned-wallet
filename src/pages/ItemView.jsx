@@ -2,8 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {Helmet} from "react-helmet-async";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const ItemView = () => {
     const { id } = useParams();
@@ -26,8 +24,7 @@ const ItemView = () => {
             <meta name='description' content={t('seo_description')} />
         </Helmet>
 
-        <Header />
-        <div className="p-4">
+        <div className="p-4 mt-6">
             <h1 className="text-2xl font-bold">{item.title}</h1>
             <img src={item.imageUrl} alt={item.title} className="w-full h-64 object-cover rounded-md" />
             <p className="mt-2 text-lg font-semibold">{item.price}</p>
@@ -35,7 +32,6 @@ const ItemView = () => {
             <p className="mt-2 text-sm text-gray-600">By {item.author}</p>
         </div>
 
-        <Footer />
         </>
     );
 }

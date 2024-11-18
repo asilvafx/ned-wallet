@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchCategories } from "../data/db";
+import {SiteUrl} from "../data/api";
 
 const Offcanvas = ({ show, onClose }) => {
 
@@ -31,15 +32,19 @@ const Offcanvas = ({ show, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-            <div className="absolute left-0 top-0 h-full w-68 bg-color rounded-r-lg px-4 pb-4 shadow-lg overflow-y-auto">
-                <div className="w-full relative sticky bg-color top-0 left-0 right-0 pt-3 px-2">
+            <div className="absolute left-0 top-0 h-full w-80 bg-color rounded-r-lg px-4 pb-4 shadow-lg overflow-y-auto">
+                <div className="w-full relative sticky bg-color top-0 left-0 right-0 pt-3 pb-2 px-2 mb-4">
+
+                    <Link to="/" className="relative">
+                        <img src={`${SiteUrl}/public/uploads/files/ned_mini.png`} className="h-10 w-auto filter invert"></img>
+                    </Link>
                     <button
                         onClick={onClose}
                         className="py-1 px-3 text-md rounded-md bg-alt border absolute top-4 right-2 flex items-center justify-center"
                     >
                         <span>✖</span>
                     </button> {/* Close button */}
-                    <h2 className="text-xl font-bold mb-4 py-2 text-primary">NED<span className="text-color">.PT</span></h2>
+
                 </div>
 
                 <h3 className="text-lg font-semibold mb-2 text-gray-500">Categorias</h3>
@@ -64,8 +69,9 @@ const Offcanvas = ({ show, onClose }) => {
                 )}
 
                 <h3 className="text-lg font-semibold mt-4 text-gray-500 mb-2">Legal Information</h3>
-                <div className="flex flex-col gap-1">
+                <div className="flex justify-start flex-wrap gap-2">
                     <Link to="/terms" className="text-sm text-primary hover:underline">Terms of Service</Link>
+                    <span className="text-sm text-gray-500">|</span>
                     <Link to="/privacy" className="text-sm text-primary hover:underline">Privacy Policy</Link>
                 </div>
             </div>

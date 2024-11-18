@@ -7,6 +7,7 @@ import Web3 from 'web3';
 // Load Pages
 import Home from './pages/Home';
 const Profile = lazy(() => import('./pages/Profile'));
+const Favorites = lazy(() => import('./pages/Favorites'));
 const Search = lazy(() => import('./pages/Search'));
 const Messages = lazy(() => import('./pages/Messages'));
 const Wallet = lazy(() => import('./pages/Wallet'));
@@ -20,6 +21,8 @@ import CookiesAddon from './components/Cookies';
 
 // Load Data
 import { fetchUserData, updateUserBalance } from './data/db';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
     const [showWalkthrough, setShowWalkthrough] = useState(false);
@@ -85,6 +88,8 @@ const App = () => {
             <Suspense fallback={<div id="loading">Loading...</div>}>
                 <Router>
                     <CookiesAddon />
+                    {/* Show Header only if showWalkthrough is false */}
+                    {!showWalkthrough && <Header />}
                     <div className="page-view">
                         <Routes>
                             {showWalkthrough ? (
@@ -93,17 +98,21 @@ const App = () => {
                                 <>
                                     <Route path="/" element={<Home />} />
                                     <Route path="/search" element={<Search />} />
+                                    <Route path="/favorites" element={<Favorites />} />
                                     <Route path="/logout" element={<Logout />} />
                                     <Route path="/chat" element={<Messages />} />
                                     <Route path="/profile" element={<Profile />} />
+                                    <Route path="/profile/edit" element={<Profile />} />
                                     <Route path="/connect" element={isSignedIn ? <Navigate to="/wallet" /> : <Connect />} />
                                     <Route path="/wallet" element={isSignedIn ? <Wallet /> : <Navigate to="/connect" />} />
                                     <Route path="/item/:id" element={<ItemView />} />
                                     <Route path="*" element={<Home />} />
-                                </>
+                                    </>
                             )}
                         </Routes>
                     </div>
+                    {/* Show Footer only if showWalkthrough is false */}
+                    {!showWalkthrough && <Footer />}
                 </Router>
             </Suspense>
         </HelmetProvider>
