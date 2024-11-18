@@ -1,6 +1,29 @@
 import { BaseUrl, Key } from './api.js';
 import axios from 'axios';
 
+// Function to fetch user data based on wallet ID
+export const likeItem = async (walletId, itemId) => {
+    try {
+
+        const response = await axios.post(`${BaseUrl}/watchlist`, itemId, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Key}`,
+            },
+        });
+        return response.data; // Return the response data
+    } catch (error) {
+        console.error("Error:", error);
+        return null; // Return null on error
+    }
+};
+
+// Function to delete item from watchlist
+export const unlikeItem = async (walledId, itemId) => {
+    const response = await axios.delete(`${BaseUrl}/watchlist/user/${walledId}`);
+    return response.data;
+};
+
 // Function to fetch user messages based on wallet ID
 export const fetchUserMessages = async (walletId) => {
     try {
@@ -72,114 +95,60 @@ export const updateUserBalance = async (walletId, balanceData) => {
     }
 };
 
+// Function to fetch item data based on item UID
+export const fetchRelatedItems = async () => {
+    try {
+        const response = await axios({
+            url: `${BaseUrl}/items`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Key}`,
+            }
+        });
+        return response.data.message; // Return the response data
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        return null; // Return null on error
+    }
+};
+
+// Function to fetch item data based on item UID
+export const fetchItems = async () => {
+    try {
+        const response = await axios({
+            url: `${BaseUrl}/items`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Key}`,
+            }
+        });
+        return response.data.message; // Return the response data
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        return null; // Return null on error
+    }
+};
+
 // Function to fetch all Items
-export const fetchItems = async () => [
-    {
-        id: 1,
-        uid: 'uid-1',
-        name: 'Item 1',
-        author: '0x000...000010',
-        price: '0.50 NED',
-        description: 'Description for Item 1',
-        category: 'Category 1',
-        tags: ['tag1', 'tag2'],
-        location: 'Location 1',
-        gallery: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150/0000FF',
-            'https://via.placeholder.com/150/008000'
-        ],
-        cover: 'https://via.placeholder.com/150',
-        stock: -1, // Unlimited stock
-        status: 1, // 1 for available
-        digital: 0, // 0 for false (not a digital product)
-        service: 0, // 0 for false (not a service)
-    },
-    {
-        id: 2,
-        uid: 'uid-2',
-        name: 'Item 2',
-        author: '0x000...000010',
-        price: '1.00 NED',
-        description: 'Description for Item 2',
-        category: 'Category 2',
-        tags: ['tag3', 'tag4'],
-        location: 'Location 2',
-        gallery: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150/FF0000',
-            'https://via.placeholder.com/150/FFFF00'
-        ],
-        cover: 'https://via.placeholder.com/150',
-        stock: 5, // Limited stock
-        status: 1, // 1 for available
-        digital: 1, // 1 for true (is a digital product)
-        service: 0, // 0 for false (not a service)
-    },
-    {
-        id: 3,
-        uid: 'uid-3',
-        name: 'Item 3',
-        author: '0x000...000010',
-        price: '1.50 NED',
-        description: 'Description for Item 3',
-        category: 'Category 3',
-        tags: ['tag5', 'tag6'],
-        location: 'Location 3',
-        gallery: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150/00FF00',
-            'https://via.placeholder.com/150/000000'
-        ],
-        cover: 'https://via.placeholder.com/150',
-        stock: 0, // Out of stock
-        status: 0, // 0 for not available
-        digital: 0, // 0 for false (not a digital product)
-        service: 1, // 1 for true (is a service)
-    },
-    {
-        id: 4,
-        uid: 'uid-4',
-        name: 'Item 4',
-        author: '0x000...000010',
-        price: '2.00 NED',
-        description: 'Description for Item 4',
-        category: 'Category 4',
-        tags: ['tag7', 'tag8'],
-        location: 'Location 4',
-        gallery: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150/800080',
-            'https://via.placeholder.com/150/FFA500'
-        ],
-        cover: 'https://via.placeholder.com/150',
-        stock: -1, // Unlimited stock
-        status: 1, // 1 for available
-        digital: 1, // 1 for true (is a digital product)
-        service: 1, // 0 for false (not a service)
-    },
-    {
-        id: 5,
-        uid: 'uid-5',
-        name: 'Item 5',
-        author: '0x000...000010',
-        price: '122.00 NED',
-        description: 'Description for Item 5',
-        category: 'Category 5',
-        tags: ['tag9', 'tag10'],
-        location: 'Location 5',
-        gallery: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150/800080',
-            'https://via.placeholder.com/150/FFA500'
-        ],
-        cover: 'https://via.placeholder.com/150',
-        stock: -1, // Unlimited stock
-        status: 1, // 1 for available
-        digital: 0, // 1 for true (is a digital product)
-        service: 0, // 0 for false (not a service)
-    },
-];
+export const fetchItemData = async (itemId) => {
+    try {
+        const response = await axios({
+            url: `${BaseUrl}/items/uid/${itemId}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Key}`,
+            }
+        });
+        return response.data.message[0] || response.data.message; // Return the response data
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        return null; // Return null on error
+    }
+};
+
 
 // Function to fetch categories
 export const fetchCategories = async () => {

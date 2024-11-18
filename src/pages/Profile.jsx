@@ -25,8 +25,13 @@ const Profile = () => {
     useEffect(() => {
 
         const fetchAllItems = async () => {
+
+            try {
             const fetchedItems = await fetchItems();
             setItems(fetchedItems);
+            } catch (fetchError) {
+                setError('Failed to fetch items.');
+            }
         };
 
         fetchAllItems();

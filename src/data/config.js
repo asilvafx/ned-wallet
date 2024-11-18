@@ -1,0 +1,5 @@
+
+const WEB3_TOKEN_PROVIDER = "https://polygon-mainnet.infura.io/v3/920a2e9becd34f0fb89a37dde7b3fb88";
+const WEB3_TOKEN_CONTRACT = "0x149a08fdc7FCEF5B67A69eb82E9111a0F7E2b450";
+
+export { WEB3_TOKEN_PROVIDER, WEB3_TOKEN_CONTRACT };

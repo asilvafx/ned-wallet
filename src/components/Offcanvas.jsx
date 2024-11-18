@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchCategories } from "../data/db";
-import {SiteUrl} from "../data/api";
+import { SiteUrl } from "../data/api";
+import { FaSearch } from "react-icons/fa";
 
 const Offcanvas = ({ show, onClose }) => {
-
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
+    const [searchQuery, setSearchQuery] = useState(''); // State for search input
+    const navigate = useNavigate(); // Hook to navigate
 
     useEffect(() => {
         const fetchCategoriesData = async () => {
@@ -28,6 +30,14 @@ const Offcanvas = ({ show, onClose }) => {
         fetchCategoriesData();
     }, []);
 
+    const handleSearchSubmit = (e) => {
+        e.preventDefault(); // Prevent the default form submission
+        if (searchQuery.trim()) {
+            navigate(`/search?query=${encodeURIComponent(searchQuery)}`); // Navigate to the search page with the query
+            onClose(); // Close the offcanvas after submitting
+        }
+    };
+
     if (!show) return null; // Don't render if not visible
 
     return (
@@ -36,7 +46,7 @@ const Offcanvas = ({ show, onClose }) => {
                 <div className="w-full relative sticky bg-color top-0 left-0 right-0 pt-3 pb-2 px-2 mb-4">
 
                     <Link to="/" className="relative">
-                        <img src={`${SiteUrl}/public/uploads/files/ned_mini.png`} className="h-10 w-auto filter invert"></img>
+                        <img src={`${SiteUrl}/public/uploads/files/ned_mini.png`} className="h-10 w-auto filter invert" alt="Logo" />
                     </Link>
                     <button
                         onClick={onClose}
@@ -45,6 +55,22 @@ const Offcanvas = ({ show, onClose }) => {
                         <span>✖</span>
                     </button> {/* Close button */}
 
+                </div>
+
+                <h3 className="text-lg font-semibold mb-2 text-gray-500">Pesquisa</h3>
+                <div className="items-center text-sm mb-4">
+                    <form onSubmit={handleSearchSubmit} className="flex items-center border rounded-lg">
+                        <input
+                            type="text"
+                            placeholder="O que estás à procura?"
+                            className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-xs"
+                            value={searchQuery} // Bind input value to state
+                            onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+                        />
+                        <button type="submit" className="bg-secondary border-l w-full px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
+                            <FaSearch className="text-xl p-1 text-color" />
+                        </button>
+                    </form>
                 </div>
 
                 <h3 className="text-lg font-semibold mb-2 text-gray-500">Categorias</h3>
@@ -59,7 +85,7 @@ const Offcanvas = ({ show, onClose }) => {
                     <ul className="w-full flex flex-col gap-1 space-y-2">
                         {categories.map(category => (
                             <li key={category.id} className="btn bg-secondary border rounded-lg w-full py-2 px-4">
-                                <Link to={`/${category.slug}`} className="text-color hover:text-primary flex justify-between items-center">
+                                <Link to={`/${category .slug}`} className="text-color hover:text-primary flex justify-between items-center">
                                     <span>{category.name}</span>
                                     <span>→</span>
                                 </Link>

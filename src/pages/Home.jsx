@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ItemSlider from '../components/ItemSlider';
 import AutoplaySlider from '../components/AutoplaySlider';
 import SearchBar from '../components/SearchBar';
+import { FaChevronRight } from "react-icons/fa6";
 import { fetchItems, fetchCategories } from "../data/db";
 
 
@@ -71,20 +72,36 @@ const Home = () => {
                 </div>
 
                 {/* Hero Section */}
-                <div className="mt-8 mb-6 bg-secondary border p-6 rounded-lg shadow-md flex flex-col items-center relative overflow-hidden">
-
-                    <div className="flex flex-col text-center items-center">
-                        <h2 className="text-2xl font-bold mb-2">Explore Os Nossos Serviços</h2>
-                        <p className="text-center text-gray-500">
-                            Descubra uma variedade de serviços oferecidos por usuários locais.
-                            Conecte-se e aproveite a experiência de nossa comunidade.
-                        </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 justify-center my-6">
+                    <div className="relative bg-gray-900 text-white rounded-lg p-8 m-4 flex flex-col justify-between">
+                        <div>
+                            <h1 className="text-5xl font-bold mb-4">The Essential Smart Watch</h1>
+                            <p className="text-lg">The perfect fusion of style and functionality, designed to seamlessly integrate into your daily life.</p>
+                        </div>
+                        <img src="https://placehold.co/400x400" alt="Smart Watch" className="mt-4 rounded-lg" />
+                        <div className="absolute bottom-4 right-4 flex gap-2 items-center bg-color px-4 py-2 rounded border">
+                            <span className="text-color">Ver mais</span>
+                            <FaChevronRight className="text-primary" />
+                        </div>
                     </div>
-
+                    <div className="flex flex-col">
+                        <div className="relative bg-lime-500 text-black rounded-lg p-8 m-4 flex flex-col justify-between">
+                            <div>
+                                <h1 className="text-5xl font-bold mb-4">The Essential Smart Watch</h1>
+                                <p className="text-lg">The perfect fusion of style and functionality, designed to seamlessly integrate into your daily life.</p>
+                            </div>
+                            <img src="https://placehold.co/400x400" alt="Smart Watch" className="mt-4 rounded-lg" />
+                            <div className="absolute bottom-4 right-4 flex gap-2 items-center bg-color px-4 py-2 rounded border">
+                                <span className="text-color">Ver mais</span>
+                                <FaChevronRight className="text-primary" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Featured Services Slider Section */}
-                <ItemSlider title={{ icon: '🛠️', title: 'Serviços Recomendados' }} items={items} />
+                <ItemSlider title={{ icon: '🛠️', title: 'Serviços Recomendados', text: 'Descubra uma variedade de serviços oferecidos por usuários locais. Conecte-se e aproveite a experiência de nossa comunidade.' }} items={items} />
+
                 <ItemSlider viewAll={false} items={items} />
 
                 {/* Autoplay Slider Section */}

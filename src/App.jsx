@@ -7,6 +7,7 @@ import Web3 from 'web3';
 // Load Pages
 import Home from './pages/Home';
 const Profile = lazy(() => import('./pages/Profile'));
+const Create = lazy(() => import('./pages/Create'));
 const Favorites = lazy(() => import('./pages/Favorites'));
 const Search = lazy(() => import('./pages/Search'));
 const Messages = lazy(() => import('./pages/Messages'));
@@ -18,20 +19,19 @@ const Walkthrough = lazy(() => import('./pages/Walkthrough'));
 
 // Load Components
 import CookiesAddon from './components/Cookies';
+import ScrollToTop from './components/ScrollToTop';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // Load Data
 import { fetchUserData, updateUserBalance } from './data/db';
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { WEB3_TOKEN_PROVIDER, WEB3_TOKEN_CONTRACT } from './data/config';
 
 const App = () => {
     const [showWalkthrough, setShowWalkthrough] = useState(false);
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [web3, setWeb3] = useState(null); // Declare Web3 state
     const walletId = Cookies.get('uid');
-
-    const WEB3_TOKEN_PROVIDER = "https://polygon-mainnet.infura.io/v3/920a2e9becd34f0fb89a37dde7b3fb88";
-    const WEB3_TOKEN_CONTRACT = "0x149a08fdc7FCEF5B67A69eb82E9111a0F7E2b450";
 
     useEffect(() => {
         const newWeb3 = new Web3(new Web3.providers.HttpProvider(WEB3_TOKEN_PROVIDER));
@@ -88,15 +88,17 @@ const App = () => {
             <Suspense fallback={<div id="loading">Loading...</div>}>
                 <Router>
                     <CookiesAddon />
-                    {/* Show Header only if showWalkthrough is false */}
+                    <ScrollToTop />
+
                     {!showWalkthrough && <Header />}
-                    <div className="page-view">
+                    <div className="page-view min-h-screen">
                         <Routes>
                             {showWalkthrough ? (
                                 <Route path="/" element={<Walkthrough onComplete={handleWalkthroughComplete} />} />
                             ) : (
                                 <>
                                     <Route path="/" element={<Home />} />
+                                    <Route path="/create" element={<Create />} />
                                     <Route path="/search" element={<Search />} />
                                     <Route path="/favorites" element={<Favorites />} />
                                     <Route path="/logout" element={<Logout />} />
@@ -111,7 +113,7 @@ const App = () => {
                             )}
                         </Routes>
                     </div>
-                    {/* Show Footer only if showWalkthrough is false */}
+
                     {!showWalkthrough && <Footer />}
                 </Router>
             </Suspense>

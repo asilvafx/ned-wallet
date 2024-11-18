@@ -1,0 +1,221 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "name": "Portugal",
+      "code": "PT"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Lisbon",
+      "country_id": 1,
+      "population": 504718,
+      "area_km2": 100.05
+    },
+    {
+      "id": 2,
+      "name": "Porto",
+      "country_id": 1,
+      "population": 214349,
+      "area_km2": 41.42
+    },
+    {
+      "id": 3,
+      "name": "Amadora",
+      "country_id": 1,
+      "population": 175872,
+      "area_km2": 23.16
+    },
+    {
+      "id": 4,
+      "name": "Braga",
+      "country_id": 1,
+      "population": 181494,
+      "area_km2": 183.40
+    },
+    {
+      "id": 5,
+      "name": "Coimbra",
+      "country_id": 1,
+      "population": 143396,
+      "area_km2": 319.40
+    },
+    {
+      "id": 6,
+      "name": "Setúbal",
+      "country_id": 1,
+      "population": 89303,
+      "area_km2": 230.50
+    },
+    {
+      "id": 7,
+      "name": "Évora",
+      "country_id": 1,
+      "population": 55627,
+      "area_km2": 130.00
+    },
+    {
+      "id": 8,
+      "name": "Funchal",
+      "country_id": 1,
+      "population": 112000,
+      "area_km2": 74.80
+    },
+    {
+      "id": 9,
+      "name": "Aveiro",
+      "country_id": 1,
+      "population": 80000,
+      "area_km2": 197.00
+    },
+    {
+      "id": 10,
+      "name": "Leiria",
+      "country_id": 1,
+      "population": 126000,
+      "area_km2": 108.00
+    },
+    {
+      "id": 11,
+      "name": "Viseu",
+      "country_id": 1,
+      "population": 98820,
+      "area_km2": 507.50
+    },
+    {
+      "id": 12,
+      "name": "Covilhã",
+      "country_id": 1,
+      "population": 35658,
+      "area_km2": 294.22
+    },
+    {
+      "id": 13,
+      "name": "Guimarães",
+      "country_id": 1,
+      "population": 158124,
+      "area_km2": 240.00
+    },
+    {
+      "id": 14,
+      "name": "Viana do Castelo",
+      "country_id": 1,
+      "population": 87950,
+      "area_km2": 315.52
+    },
+    {
+      "id": 15,
+      "name": "Bragança",
+      "country_id": 1,
+      "population": 34826,
+      "area_km2": 1260.00
+    },
+    {
+      "id": 16,
+      "name": "Ponta Delgada",
+      "country_id": 1,
+      "population": 68799,
+      "area_km2": 233.00
+    },
+    {
+      "id": 17,
+      "name": "Almada",
+      "country_id": 1,
+      "population": 174030,
+      "area_km2": 71.46
+    },
+    {
+      "id": 18,
+      "name": "Santarém",
+      "country_id": 1,
+      "population": 61980,
+      "area_km2": 277.00
+    },
+    {
+      "id": 19,
+      "name": "Oeiras",
+      "country_id": 1,
+      "population": 174000,
+      "area_km2": 45.88
+    },
+    {
+      "id": 20,
+      "name": "Cascais",
+      "country_id": 1,
+      "population": 214000,
+      "area_km2": 97.34
+    },
+    {
+      "id": 21,
+      "name": "Sintra",
+      "country_id": 1,
+      "population": 377000,
+      "area_km2": 319.00
+    },
+    {
+      "id": 22,
+      "name": "Amarante",
+      "country_id": 1,
+      "population": 56116,
+      "area_km2": 302.00
+    },
+    {
+      "id": 23,
+      "name": "Leiria",
+      "country_id": 1,
+      "population": 126000,
+      "area_km2": 108.00
+    },
+    {
+      "id": 24,
+      "name": "Tavira",
+      "country_id": 1,
+      "population": 25711,
+      "area_km2": 606.00
+    },
+    {
+      "id": 25,
+      "name": "Faro",
+      "country_id": 1,
+      "population": 115800,
+      "area_km2": 202.00
+    },
+    {
+      "id": 26,
+      "name": "Albufeira",
+      "country_id": 1,
+      "population": 40800,
+      "area_km2": 140.00
+    },
+    {
+      "id": 27,
+      "name": "Torres Vedras",
+      "country_id": 1,
+      "population": 80400,
+      "area_km2": 405.00
+    },
+    {
+      "id": 28,
+      "name": "Vila Real",
+      "country_id": 1,
+      "population": 51850,
+      "area_km2": 406.00
+    },
+    {
+      "id": 29,
+      "name": "Castelo Branco",
+      "country_id": 1,
+      "population": 34000,
+      "area_km2": 1427.00
+    },
+    {
+      "id": 30,
+      "name": "Póvoa de Varzim",
+      "country_id": 1,
+      "population": 62900,
+      "area_km2": 56.00
+    }
+  ]
+}

@@ -44,7 +44,7 @@ const HeaderSkeleton = () => {
                                 </span>
                             </form>
                         </div>
-                        <Link to="/sell">
+                        <Link to="/create">
                             <button className="bg-secondary border text-color text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
                                     <span className="w-auto h-5 flex gap-2 flex-nowrap items-center justify-center">
                                         <FaPlus className="text-primary" />

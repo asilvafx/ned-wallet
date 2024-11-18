@@ -36,7 +36,7 @@ const Footer = () => {
                 <Link to="/favorites" className="text-center p-2">
                     <GoHeartFill className="text-xl" />
                 </Link>
-                <Link to="/sell" className="text-center p-2">
+                <Link to="/create" className="text-center p-2">
                     <div className="bg-primary text-color p-3 rounded-full">
                         <FaPlus className="text-2xl" />
                     </div>
