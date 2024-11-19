@@ -181,7 +181,7 @@ const Connect = () => {
                 <div className="bg-secondary border rounded-lg shadow-lg p-6">
                     {!verified ? (
                         <>
-                            <h1 className="text-2xl font-bold text-center mb-6 text-primary">
+                            <h1 className="text-2xl font-bold text-center mb-6 text-color">
                                 Conecta-te à tua conta
                             </h1>
 
@@ -218,7 +218,7 @@ const Connect = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-3 mt-4 bg-primary text-color rounded-md"
+                                    className="w-full py-3 mt-4 btn-primary rounded-md"
                                 >
                                     Entrar
                                 </button>
@@ -260,14 +260,14 @@ const Connect = () => {
                 </div>
 
                 <div className="bg-secondary border rounded-lg shadow-lg p-6">
-                    <h2 className="text-2xl font-semibold text-center mb-6 text-primary">
+                    <h2 className="text-2xl font-semibold text-center mb-6 text-color">
                         Criar Nova Conta?
                     </h2>
-                    <p className="text-color mb-4">
+                    <p className="text-gray-500 mb-4">
                         Para criares uma nova conta, precisas primeiro verificar a tua identidade através da verificação do Orb da World ID.
                         Isto assegura que apenas utilizadores verificados possam criar uma conta.
                     </p>
-                    <p className="text-gray-500 mb-6 text-lg">
+                    <p className="text-primary mb-6 text-lg">
                         Segue estes passos:
                     </p>
                     <ol className="list-decimal list-inside pl-4 space-y-2 text-color">

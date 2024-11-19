@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from "react-helmet-async";
-import { fetchItemData, fetchRelatedItems, likeItem, unlikeItem } from "../data/db"; // Import your like and unlike functions
+import { fetchItemData, fetchRelatedItems, likeItem, unlikeItem } from "../data/db";
 import Breadcrumbs from '../components/Breadcrumbs';
 import ItemCard from "../components/ItemCard";
+import ItemViewSkeleton from '../components/skeleton/ItemViewSkeleton';
 import { FaRegHeart } from "react-icons/fa6";
 import Avatar from "../components/Avatar";
+
 
 const ItemView = () => {
     const { id } = useParams();
@@ -17,7 +19,8 @@ const ItemView = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [isLiked, setIsLiked] = useState(false); // State to track if the item is liked
+    const [isLiked, setIsLiked] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
         if (!id) {
@@ -88,8 +91,18 @@ const ItemView = () => {
         }
     };
 
+    // Function to go to the next image
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.gallery.length);
+    };
+
+    // Function to go to the previous image
+    const prevImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.gallery.length) % item.gallery.length);
+    };
+
     if (loading) {
-        return <div>Loading...</div>;
+        return <ItemViewSkeleton />; // Show skeleton while loading
     }
 
     if (error) {
@@ -102,7 +115,7 @@ const ItemView = () => {
                 <form onSubmit={handleSearchSubmit} className="mt-10">
                     <input
                         type="text"
-                        value ={searchQuery}
+                        value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Pesquisar..."
                         className="border rounded px-4 py-2"
@@ -142,19 +155,16 @@ const ItemView = () => {
                     </button>
                 </div>
 
-                {/* Slider for gallery images */}
+                // Slider for gallery images
                 {item.gallery.length > 0 ? (
                     <div className="relative w-full h-64"> {/* Container for the slider */}
-                        {item.gallery.map((url, index) => (
-                            <div
-                                key={index}
-                                className={`absolute inset-0 transition-opacity duration-700 ease-in-out`} // Use absolute positioning for overlapping
-                            >
-                                <div className="flex items-center justify-center h-full"> {/* Center the image */}
-                                    <img src={url} alt={`Gallery image ${index + 1}`} className="w-full h-full object-cover rounded-md" />
-                                </div>
+                        <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2">❮</button>
+                        <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
+                            <div className="flex items-center justify-center h-full"> {/* Center the image */}
+                                <img src={item.gallery[currentImageIndex]} alt={`Gallery image ${currentImageIndex + 1}`} className="w-full h-full object-cover rounded-md" />
                             </div>
-                        ))}
+                        </div>
+                        <button onClick={nextImage} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2">❯</button>
                     </div>
                 ) : (
                     <img src={item.cover} alt={item.name} className="w-full h-64 object-cover rounded-md mb-4" />
@@ -176,7 +186,7 @@ const ItemView = () => {
                                 ))}
                             </div>
                         ) : null}
-                        <p className="text-sm text-gray-600 inline-flex gap-1 items-center">Localização: {item.location}</p>
+                        <p className="text-sm text-gray-600 inline-flex gap-1 items-center">Localização: {item.city}, {item.country}</p>
                         <p className="text-sm text-gray-600">Categoria: {item.category}</p>
 
                         {/* Badges for service and digital items */}

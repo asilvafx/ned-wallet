@@ -98,7 +98,7 @@ const Header = () => {
                                 <span>
                                         <button type="submit"
                                                 className="bg-secondary border-l w-full px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
-                                            <FaSearch class Name="text-xl p-1 text-color" />
+                                            <FaSearch className="text-xl p-1 text-color" />
                                         </button>
                                     </span>
                             </form>
@@ -183,7 +183,7 @@ const Header = () => {
             ))}
         </div>
         </header>
-    <div class ="header-divider min-h-32 hidden md:block"></div>
+    <div className="header-divider min-h-32 hidden md:block"></div>
     <Offcanvas show={showOffcanvas} onClose={() => setShowOffcanvas(false)} />
 </>
 );

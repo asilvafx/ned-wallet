@@ -6,6 +6,7 @@ import Web3 from 'web3';
 
 // Load Pages
 import Home from './pages/Home';
+const Listings = lazy(() => import('./pages/Listings'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Create = lazy(() => import('./pages/Create'));
 const Favorites = lazy(() => import('./pages/Favorites'));
@@ -16,6 +17,7 @@ const Logout = lazy(() => import('./pages/Logout'));
 const Connect = lazy(() => import('./pages/Connect'));
 const ItemView = lazy(() => import('./pages/ItemView'));
 const Walkthrough = lazy(() => import('./pages/Walkthrough'));
+
 
 // Load Components
 import CookiesAddon from './components/Cookies';
@@ -98,6 +100,8 @@ const App = () => {
                             ) : (
                                 <>
                                     <Route path="/" element={<Home />} />
+                                    <Route path="/listings" element={<Listings />} />
+                                    <Route path="/listings/:categoryId" element={<Listings />} />
                                     <Route path="/create" element={<Create />} />
                                     <Route path="/search" element={<Search />} />
                                     <Route path="/favorites" element={<Favorites />} />

@@ -7,18 +7,15 @@
       <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ItemCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ItemSlider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemSlider.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Offcanvas.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Offcanvas.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/skeleton/HeaderSkeleton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/skeleton/HeaderSkeleton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ItemView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ItemView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +84,7 @@
       <workItem from="1731589494232" duration="686000" />
       <workItem from="1731623551027" duration="7754000" />
       <workItem from="1731678316431" duration="44129000" />
-      <workItem from="1731857679963" duration="37153000" />
+      <workItem from="1731857679963" duration="43033000" />
     </task>
     <servers />
   </component>

@@ -67,7 +67,7 @@ const Offcanvas = ({ show, onClose }) => {
                             value={searchQuery} // Bind input value to state
                             onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
                         />
-                        <button type="submit" className="bg-secondary border-l w-full px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
+                        <button type="submit" className="bg-secondary border-l px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
                             <FaSearch className="text-xl p-1 text-color" />
                         </button>
                     </form>

@@ -34,7 +34,7 @@ const ItemCard = ({ item }) => {
                     <p className="text-sm text-gray-500">{item?.author && item.author.length > 10 ? `${item.author.slice(0, 5)}...${item.author.slice(-4)}` : item.author}</p>
                 </div>
 
-                <p className="text-sm text-gray-500 mt-1">{item.location}</p>
+                <p className="text-sm text-gray-500 mt-1">{item.city}, {item.country}</p>
                 <p className="text-lg font-semibold mt-1">{item.price} NED</p>
 
                 {/* Badges for Digital and Service */}
