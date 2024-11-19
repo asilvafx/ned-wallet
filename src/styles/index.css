@@ -15,7 +15,8 @@
   /* Default Light Theme */
   :root {
     --background-color: var(--light-color);
-    --secondary-color: rgba(0,0,0, 0.3);
+    --secondary-color: #eaeff2;
+    --card-color: rgba(0,0,0, 0.3);
     --alt-color: var(--dark-color);
     --text-color: #1e1e1e;
     --border-color: #e8e8e8;
@@ -23,7 +24,8 @@
   /* Dark Theme */
   [data-theme='dark'] {
     --background-color: var(--dark-color);
-    --secondary-color: rgba(0,0,0, 0.3);
+    --secondary-color: #252729;
+    --card-color: rgba(0,0,0, 0.3);
     --alt-color: var(--light-color);
     --text-color: #e0e0e0;
     --border-color: #313131;
@@ -116,7 +118,10 @@
   } 
   .bg-alt {
     background-color: var(--alt-color) !important;
-  } 
+  }
+  .bg-card {
+    background-color: var(--card-color) !important;
+  }
   .bg-primary {
     background-color: var(--primary-color) !important;  
   }
@@ -172,7 +177,7 @@
     border-radius: var(--border-radius) !important; 
   }
   .card {
-    background-color: var(--secondary-color);
+    background-color: var(--card-color);
     color: var(--text-color);
     padding: 1rem;
   }

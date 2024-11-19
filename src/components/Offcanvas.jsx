@@ -63,7 +63,7 @@ const Offcanvas = ({ show, onClose }) => {
                         <input
                             type="text"
                             placeholder="O que estás à procura?"
-                            className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-xs"
+                            className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-md"
                             value={searchQuery} // Bind input value to state
                             onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
                         />

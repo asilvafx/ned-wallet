@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import Select from 'react-select'; // Import React Select
+import Select from 'react-select';
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState('');

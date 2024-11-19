@@ -42,24 +42,6 @@ export const fetchUserMessages = async (walletId) => {
     }
 };
 
-// Function to fetch user messages based on wallet ID
-export const fetchUserFavorites = async (walletId) => {
-    try {
-        const response = await axios({
-            url: `${BaseUrl}/watchlist/user/${walletId}`,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
-            }
-        });
-        return response.data.message; // Return the response data
-    } catch (error) {
-        console.error("Error fetching user messages:", error);
-        return null; // Return null on error
-    }
-};
-
 // Function to fetch user data based on wallet ID
 export const fetchUserData = async (walletId) => {
     try {
@@ -71,7 +53,13 @@ export const fetchUserData = async (walletId) => {
                 'Authorization': `Bearer ${Key}`,
             }
         });
-        return response.data.message[0] || response.data.message; // Return the response data
+
+        const output = response.data.message;
+        if(output.length>1){
+            return output;
+        }
+        return output[0]; // Return the response data
+
     } catch (error) {
         console.error("Error fetching user data:", error);
         return null; // Return null on error

@@ -5,6 +5,7 @@ import ItemCardSkeleton from '../components/skeleton/ItemCardSkeleton'; // Impor
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom'; // Import useParams to get URL parameters
 import localData from '../json/locals.json'; // Import the local JSON data
+import Select from 'react-select';
 
 const Listings = () => {
     const { t } = useTranslation();
@@ -59,11 +60,10 @@ const Listings = () => {
         setSearchQuery(e.target.value);
     };
 
-    const handleFilterChange = (e) => {
-        const { name, value } = e.target;
+    const handleFilterChange = (name) => (selectedOption) => {
         setFilters(prevFilters => ({
             ...prevFilters,
-            [name]: value,
+            [name]: selectedOption ? selectedOption.value : '',
         }));
     };
 
@@ -80,7 +80,7 @@ const Listings = () => {
     if (loading) {
         return (
             <div className="px-4 py-6">
-                <h1 className="text-2xl font-bold mb-4">{t('Listings')}</h1>
+                <h1 className="text-2xl font-bold mb-4 capitalize">{t('Todos os anúncios')}</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {Array.from({ length: 8 }).map((_, index) => (
                         <ItemCardSkeleton key={index} />
@@ -96,7 +96,7 @@ const Listings = () => {
 
     return (
         <div className="px-4 py-6">
-            <h1 className="text-2xl font-bold mb-4">{t('Listings')}</h1>
+            <h1 className="text-2xl font-bold mb-4 capitalize">{t('Todos os anúncios')}</h1>
 
             {/* Search Section */}
             <div className="mb-4">
@@ -104,61 +104,58 @@ const Listings = () => {
                     type="text"
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    placeholder={t ('Search items...')}
+                    placeholder={t('Pesquisar produtos/serviços...')}
                     className="border rounded px-4 py-2 w-full"
                 />
             </div>
 
             {/* Filter Section */}
             <div className="mb-4 flex flex-col md:flex-row md:gap-4">
-                <select
-                    name="category"
-                    value={filters.category}
-                    onChange={handleFilterChange}
-                    className="border rounded px-4 py-2 w-full md:w-1/3"
-                >
-                    <option value="">{t('All Categories')}</option>
-                    {categories.map(category => (
-                        <option key={category.id} value={category.name}>{category.name}</option>
-                    ))}
-                </select>
+                <Select
+                    id="category"
+                    value={filters.category ? { value: filters.category, label: filters.category } : null}
+                    onChange={handleFilterChange('category')}
+                    options={categories.map(category => ({ value: category.name, label: category.name }))}
+                    className="bg-secondary border rounded-lg w-full h-full p-0"
+                    classNamePrefix="select"
+                    placeholder={t('Todas as categorias')}
+                />
+                <Select
+                    id="location"
+                    value={filters.location ? { value: filters.location, label: filters.location } : null}
+                    onChange={handleFilterChange('location')}
+                    options={locations.map(location => ({ value: location, label: location }))}
+                    className="bg-secondary border rounded-lg w-full h-full p-0"
+                    classNamePrefix="select"
+                    placeholder={t('Todo país')}
+                />
 
-                <select
-                    name="location"
-                    value={filters.location}
-                    onChange={handleFilterChange}
-                    className="border rounded px-4 py-2 w-full md:w-1/3"
-                >
-                    <option value="">{t('All Locations')}</option>
-                    {locations.map(location => (
-                        <option key={location.id} value={location.name}>{location.name}</option>
-                    ))}
-                </select>
+                <Select
+                    id="priceRange"
+                    value={filters.priceRange ? { value: filters.priceRange, label: `Até ${filters.priceRange} NED` } : null}
+                    onChange={handleFilterChange('priceRange')}
+                    options={[
+                        { value: '50', label: 'Até 50 NED' },
+                        { value: '100', label: 'Até 100 NED' },
+                        { value: '200', label: 'Até 200 NED' },
+                    ]}
+                    className="bg-secondary border rounded-lg w-full h-full p-0"
+                    classNamePrefix="select"
+                    placeholder={t('Todos preços')}
+                />
 
-                <select
-                    name="priceRange"
-                    value={filters.priceRange}
-                    onChange={handleFilterChange}
-                    className="border rounded px-4 py-2 w-full md:w-1/3"
-                >
-                    <option value="">{t('All Prices')}</option>
-                    <option value="50">Up to $50</option>
-                    <option value="100">Up to $100</option>
-                    <option value="200">Up to $200</option>
-                    {/* Add more price ranges as needed */}
-                </select>
-
-                {/* New Service Type Filter */}
-                <select
-                    name="serviceType"
-                    value={filters.serviceType}
-                    onChange={handleFilterChange}
-                    className="border rounded px-4 py-2 w-full md:w-1/3"
-                >
-                    <option value="">{t('All Types')}</option>
-                    <option value="products">{t('Produtos')}</option>
-                    <option value="services">{t('Serviços')}</option>
-                </select>
+                <Select
+                    id="serviceType"
+                    value={filters.serviceType ? { value: filters.serviceType, label: filters.serviceType === 'products' ? t('Produtos') : t('Serviços') } : null}
+                    onChange={handleFilterChange('serviceType')}
+                    options={[
+                        { value: 'products', label: t('Produtos') },
+                        { value: 'services', label: t('Serviços') },
+                    ]}
+                    className="bg-secondary border rounded-lg w-full h-full p-0"
+                    classNamePrefix="select"
+                    placeholder={t('Todos tipos')}
+                />
             </div>
 
             {/* Items Grid */}

@@ -29,6 +29,18 @@
 header {
     z-index: 9;
 }
+.bottom-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    right: 0;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
 .flashing-bullet {
     width: 10px; /* Adjust size */
     height: 10px; /* Adjust size */
@@ -47,4 +59,48 @@ header {
     100% {
         opacity: 1; /* Back to fully visible */
     }
+}
+#cc-main .cm > * {
+    font-family: inherit !important;
+}
+#cc-main .cm {
+    background: var(--background-color) !important;
+    border: 1px solid;
+}
+.cm__footer, .pm.pm--box {
+    background: var(--background-color) !important;
+    color: var(--text-color) !important;
+    font-weight: bolder !important;
+}
+.pm__btn-group .pm__btn {
+    background: var(--alt-color) !important;
+    color: var(--background-color) !important;
+    font-weight: bolder !important;
+}
+.pm__section--toggle button {
+    background: var(--background-color) !important;
+    border-color: var(--border-color) !important;
+}
+#cc-main.pm__section--toggle.is-expanded.pm__section-desc-wrapper, pm__section {
+    border: 1px solid var(--border-color) !important;
+}
+.pm__btn.pm__btn--secondary {
+    background: var(--primary-color) !important;
+    color: var(--background-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.cm__title, .pm__title {
+    color: var(--text-color) !important;
+    font-weight: bolder !important;
+}
+.cm__btn {
+    background: var(--alt-color) !important;
+    color: var(--background-color) !important;
+    font-weight: bolder !important;
+}
+.cm__btn.cm__btn--secondary {
+    background: var(--primary-color) !important;
+    color: var(--text-dark) !important;
+    font-weight: bolder !important;
+    border-color: var(--primary-color) !important;
 }

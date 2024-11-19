@@ -92,33 +92,36 @@ const App = () => {
                     <CookiesAddon />
                     <ScrollToTop />
 
-                    {!showWalkthrough && <Header />}
+                    <Header />
                     <div className="page-view min-h-screen">
                         <Routes>
                             {showWalkthrough ? (
-                                <Route path="/" element={<Walkthrough onComplete={handleWalkthroughComplete} />} />
-                            ) : (
                                 <>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/listings" element={<Listings />} />
-                                    <Route path="/listings/:categoryId" element={<Listings />} />
-                                    <Route path="/create" element={<Create />} />
-                                    <Route path="/search" element={<Search />} />
-                                    <Route path="/favorites" element={<Favorites />} />
-                                    <Route path="/logout" element={<Logout />} />
-                                    <Route path="/chat" element={<Messages />} />
-                                    <Route path="/profile" element={<Profile />} />
-                                    <Route path="/profile/edit" element={<Profile />} />
-                                    <Route path="/connect" element={isSignedIn ? <Navigate to="/wallet" /> : <Connect />} />
-                                    <Route path="/wallet" element={isSignedIn ? <Wallet /> : <Navigate to="/connect" />} />
-                                    <Route path="/item/:id" element={<ItemView />} />
-                                    <Route path="*" element={<Home />} />
-                                    </>
+                                <Route path="/" element={<Walkthrough onComplete={handleWalkthroughComplete} />} />
+                                <Route path="*" element={<Walkthrough onComplete={handleWalkthroughComplete} />} />
+                                </>
+                                ) : (
+                                <>
+                                <Route path="/" element={<Home />} />
+                                <Route path="*" element={<Home />} />
+                                </>
                             )}
+                            <Route path="/listing/:id" element={<ItemView />} />
+                            <Route path="/listings" element={<Listings />} />
+                            <Route path="/listings/:categoryId" element={<Listings />} />
+                            <Route path="/create" element={<Create />} />
+                            <Route path="/search" element={<Search />} />
+                            <Route path="/favorites" element={<Favorites />} />
+                            <Route path="/logout" element={<Logout />} />
+                            <Route path="/chat" element={<Messages />} />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/profile/edit" element={<Profile />} />
+                            <Route path="/connect" element={isSignedIn ? <Navigate to="/wallet" /> : <Connect />} />
+                            <Route path="/wallet" element={isSignedIn ? <Wallet /> : <Navigate to="/connect" />} />
                         </Routes>
                     </div>
 
-                    {!showWalkthrough && <Footer />}
+                    <Footer />
                 </Router>
             </Suspense>
         </HelmetProvider>

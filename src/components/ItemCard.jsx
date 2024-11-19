@@ -6,11 +6,11 @@ import Avatar from './Avatar';
 const ItemCard = ({ item }) => {
     return (
         <Link
-            to={`/item/${item.uid}`}
+            to={`/listing/${item.uid}`}
             key={item.id}
             className="min-w-[250px] max-w-[250px] min-h-[300px] overflow-hidden transition-transform transform hover:scale-105"
         >
-            <div className="w-full bg-secondary border p-4 rounded-lg shadow-md">
+            <div className="w-full bg-card border p-4 rounded-lg shadow-md">
 
             <div className="relative">
                 {/* Item Image */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ItemCard from '../components/ItemCard';
-import { fetchItems, fetchUserFavorites } from "../data/db";
+import { fetchItems, fetchUserData } from "../data/db";
 import Cookies from "js-cookie";
 import NotLoggedIn from '../components/NotLoggedIn';
 import {Link} from "react-router-dom";
@@ -19,8 +19,8 @@ const Favorites = () => {
                 return;
             }
             try {
-                const favoritesData = await fetchUserFavorites(); // Fetch user favorites
-                setItems(favoritesData); // Set the fetched favorites
+                const favoritesData = await fetchUserData(); // Fetch user favorites
+                setItems(favoritesData.watchlist); // Set the fetched favorites
             } catch (fetchError) {
                 setError('Failed to fetch favorites.'); // Handle fetch error
             } finally {

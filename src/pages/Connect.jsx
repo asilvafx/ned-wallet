@@ -279,19 +279,19 @@ const Connect = () => {
             </div>
 
             <div className="relative p-4 mt-6">
-                <div className="bg-primary border rounded-lg shadow-lg p-6">
-                    <h2 className="text-2xl font-bold mb-4 text-center text-color mb-6">Como Começar em 3 Passos</h2>
-                    <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-800">
+                <div className="bg-card border rounded-lg shadow-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-center text-primary mb-6">Como Começar em 3 Passos</h2>
+                    <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 text-color">
                         <li className="flex flex-col">
-                            <span className="text-3xl">1.</span>
+                            <span className="text-3xl text-gray-600">1.</span>
                             <span className="text-lg">Verifica a tua identidade usando o Orb da Worldcoin. Este processo é obrigatório.</span>
                         </li>
                         <li className="flex flex-col">
-                            <span className="text-3xl">2.</span>
+                            <span className="text-3xl text-gray-600">2.</span>
                             <span className="text-lg">Entra na tua conta com o teu World ID. Uma nova carteira digital irá ser criada para ti.</span>
                         </li>
                         <li className="flex flex-col">
-                            <span className="text-3xl">3.</span>
+                            <span className="text-3xl text-gray-600">3.</span>
                             <span className="text-lg">Explora todas as funcionalidades. Começa a comprar e a vender!</span>
                         </li>
                     </ol>
