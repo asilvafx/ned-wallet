@@ -8,6 +8,7 @@ import { IoQrCode, IoSend } from "react-icons/io5";
 import { MdCurrencyExchange } from "react-icons/md";
 import { fetchUserData } from '../data/db';
 import { IoIosRefresh } from "react-icons/io";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Wallet = () => {
     const { t } = useTranslation();
@@ -43,6 +44,12 @@ const Wallet = () => {
         fetchData();
     }, [navigate]); // Add navigate as a dependency
 
+    // Define breadcrumbsLinks only after items are fetched
+    const breadcrumbsLinks = [
+        { label: 'Home', path: '/' },
+        { label: 'Carteira', path: '/wallet' },
+    ];
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -57,7 +64,7 @@ const Wallet = () => {
                 <title>{t('Carteira')}</title>
                 <meta name='description' content={t('Manage your wallet')} />
             </Helmet>
-
+            <Breadcrumbs links={breadcrumbsLinks} />
             <div className="px-4 mt-6">
                 <h1 className="text-xl mb-4">Carteira</h1>
                 <div className="bg-secondary border p-4 rounded-lg mb-4">
@@ -80,14 +87,14 @@ const Wallet = () => {
                             <MdCurrencyExchange className="text-2xl" />
                             <span className="font-semibold">Comprar NED</span>
                         </div>
-                        <div className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
+                        <Link to="/receive" className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
                             <IoQrCode className="text-2xl" />
                             <span className="font-semibold">Receber</span>
-                        </div>
-                        <div className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
+                        </Link>
+                        <Link to="/send" className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
                             <IoSend className="text-2xl" />
                             <span className="font-semibold">Enviar</span>
-                        </div>
+                        </Link>
                     </div>
                 </div>
 

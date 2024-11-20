@@ -3,22 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Offcanvas.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Offcanvas.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ItemView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ItemView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Favorites.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Favorites.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Listings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Listings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Search.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Messages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Wallet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Wallet.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +68,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -95,6 +90,7 @@
       <workItem from="1731623551027" duration="7754000" />
       <workItem from="1731678316431" duration="44129000" />
       <workItem from="1731857679963" duration="59746000" />
+      <workItem from="1732125591282" duration="3487000" />
     </task>
     <servers />
   </component>
@@ -110,6 +106,14 @@
     </state>
     <state x="396" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1280.721/-1280.-68.1280.999@0.25.1280.721" timestamp="1731966643937" />
     <state x="446" y="239" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1440.817@0.25.1440.817" timestamp="1731679127906" />
+    <state x="387" y="334" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1732136993318">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="387" y="334" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.817@0.25.1440.817" timestamp="1732136993318" />
+    <state x="341" y="212" width="597" height="548" key="find.popup" timestamp="1732136991048">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="341" y="212" width="597" height="548" key="find.popup/0.25.1440.817@0.25.1440.817" timestamp="1732136991048" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

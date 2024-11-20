@@ -4,6 +4,7 @@ import { fetchUserMessages } from '../data/db';
 import Cookies from 'js-cookie';
 import NotLoggedIn from '../components/NotLoggedIn';
 import {Link} from 'react-router-dom';
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Messages = () => {
     const isLoggedIn = Cookies.get('isLoggedIn');
@@ -31,6 +32,12 @@ const Messages = () => {
         fetchMessages();
     }, [isLoggedIn]);
 
+    // Define breadcrumbsLinks only after items are fetched
+    const breadcrumbsLinks = [
+        { label: 'Home', path: '/' },
+        { label: 'Mensagens', path: '/chat' },
+    ];
+
     if (loading) {
         return <div className="text-center mt-4">Loading messages...</div>;
     }
@@ -53,7 +60,7 @@ const Messages = () => {
                 <title>Messages</title>
                 <meta name='description' content='User  messages and chat' />
             </Helmet>
-
+            <Breadcrumbs links={breadcrumbsLinks} />
             <div className="px-4 mt-6">
                 <h1 className="text-2xl font-bold mb-4">Mensagens</h1>
 

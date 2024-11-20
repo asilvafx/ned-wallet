@@ -13,9 +13,12 @@ const Favorites = lazy(() => import('./pages/Favorites'));
 const Messages = lazy(() => import('./pages/Messages'));
 const Wallet = lazy(() => import('./pages/Wallet'));
 const Logout = lazy(() => import('./pages/Logout'));
-const Connect = lazy(() => import('./pages/Connect'));
+const Connect = lazy(
+    () => import('./pages/Connect'));
 const ItemView = lazy(() => import('./pages/ItemView'));
 const Walkthrough = lazy(() => import('./pages/Walkthrough'));
+const Receive = lazy(() => import('./pages/Receive'));
+const Send = lazy(() => import('./pages/Send'));
 
 
 // Load Components
@@ -31,6 +34,7 @@ import { WEB3_TOKEN_PROVIDER, WEB3_TOKEN_CONTRACT } from './data/config';
 const App = () => {
     const [showWalkthrough, setShowWalkthrough] = useState(false);
     const [isSignedIn, setIsSignedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [web3, setWeb3] = useState(null); // Declare Web3 state
     const walletId = Cookies.get('uid');
 
@@ -45,12 +49,17 @@ const App = () => {
         if (!hasVisited) {
             setShowWalkthrough(true);
         }
+        try {
         if (isLoggedIn) {
             setIsSignedIn(true);
             const fetchUserDataFromApi = async () => { // Rename the function to avoid confusion
                 const data = await fetchUserData(walletId); // Call the imported function
-                if (data) {
-                    await updateBalance(data.wallet_pk, walletId);
+                if (walletId && data) {
+                    if(data.wallet_pk) {
+                        await updateBalance(data.wallet_pk, walletId);
+                    } else {
+                        console.log(data);
+                    }
                 } else {
                     // Handle invalid user data
                     Cookies.remove('uid');
@@ -59,6 +68,11 @@ const App = () => {
                 }
             };
             fetchUserDataFromApi(); // Call the renamed function
+        }
+        } catch (fetchError) {
+           console.log('Failed to fetch the user data.');
+        } finally {
+            setLoading(false);
         }
     }, []);
 
@@ -83,6 +97,13 @@ const App = () => {
         Cookies.set('hasVisited', 'true', { path: '', secure: true, sameSite: 'strict' });
         setShowWalkthrough(false);
     };
+
+    if(loading){
+        return (
+            <div id="loading">Loading...</div>
+        );
+    }
+
 
     return (
         <HelmetProvider>
@@ -116,6 +137,8 @@ const App = () => {
                             <Route path="/profile/edit" element={<Profile />} />
                             <Route path="/connect" element={isSignedIn ? <Navigate to="/wallet" /> : <Connect />} />
                             <Route path="/wallet" element={isSignedIn ? <Wallet /> : <Navigate to="/connect" />} />
+                            <Route path="/receive" element={isSignedIn ? <Receive /> : <Navigate to="/connect" />} />
+                            <Route path="/send" element={isSignedIn ? <Send /> : <Navigate to="/connect" />} />
                         </Routes>
                     </div>
 

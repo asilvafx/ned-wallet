@@ -79,7 +79,8 @@ const Connect = () => {
                         last_balance: walletBalance
                     }
 
-                    await updateUserBalance(nullifierHash, balanceData)
+                    await updateUserBalance(nullifierHash, balanceData);
+
                 } catch (error) {
                     console.log(error);
                     return;

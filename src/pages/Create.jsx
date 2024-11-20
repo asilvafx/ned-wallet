@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { BaseUrl, Key } from '../data/api';
 import { useDropzone } from 'react-dropzone';
 import { WithContext as ReactTags } from 'react-tag-input';
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Create = () => {
     const navigate = useNavigate();
@@ -102,14 +103,21 @@ const Create = () => {
         onDrop,
     });
 
+    // Define breadcrumbsLinks only after items are fetched
+    const breadcrumbsLinks = [
+        { label: 'Home', path: '/' },
+        { label: 'Criar anúncio', path: '/create' },
+    ];
+
     return (
         <>
             <Helmet>
-                <title>Criar Novo Produto ou Serviço</title>
+                <title>Criar Novo Anúncio</title>
                 <meta name="description" content="Página para criar um novo produto ou serviço no NED" />
             </Helmet>
+            <Breadcrumbs links={breadcrumbsLinks} />
             <div className="container mx-auto p-4 mt-6">
-                <h1 className="text-2xl font-bold mb-4 capitalize">O Que Está a Vender?</h1>
+                <h1 className="text-2xl font-bold mb-4 capitalize">O Que Estás a Vender?</h1>
                 <form onSubmit={handleSubmit} className="bg-secondary border shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                     {error && <p className="text-red-500 mb-4">{error}</p>}
                     <div className="mb-4">

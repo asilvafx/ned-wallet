@@ -8,6 +8,7 @@ import { fetchUserData } from '../data/db';
 import NotLoggedIn from '../components/NotLoggedIn';
 import { fetchItems } from "../data/db";
 import ItemCard from "../components/ItemCard";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Profile = () => {
     const isLoggedIn = Cookies.get('isLoggedIn');
@@ -92,6 +93,12 @@ const Profile = () => {
         }
     };
 
+    // Define breadcrumbsLinks only after items are fetched
+    const breadcrumbsLinks = [
+        { label: 'Home', path: '/' },
+        { label: 'Perfil', path: '/profile' },
+    ];
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -111,9 +118,10 @@ const Profile = () => {
     return (
         <>
             <Helmet>
-                <title>Profile</title>
+                <title>O Meu Perfil</title>
                 <meta name='description' content='User  profile page' />
             </Helmet>
+            <Breadcrumbs links={breadcrumbsLinks} />
             <div className="px-4 mt-6">
                 <div className="bg-secondary border rounded-lg p-6 mb-6">
                     <div className="flex justify-between items-center mb-6">

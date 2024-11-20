@@ -5,6 +5,7 @@ import { fetchItems, fetchUserData } from "../data/db";
 import Cookies from "js-cookie";
 import NotLoggedIn from '../components/NotLoggedIn';
 import {Link} from "react-router-dom";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Favorites = () => {
     const isLoggedIn = Cookies.get('isLoggedIn'); // Check if the user is logged in
@@ -31,6 +32,12 @@ const Favorites = () => {
         fetchFavoritesFromApi(); // Call the fetch function
     }, [isLoggedIn]); // Run effect when isLoggedIn changes
 
+    // Define breadcrumbsLinks only after items are fetched
+    const breadcrumbsLinks = [
+        { label: 'Home', path: '/' },
+        { label: 'Favoritos', path: '/favorites' },
+    ];
+
     if (loading) {
         return <div>Loading...</div>; // Show loading state
     }
@@ -53,6 +60,7 @@ const Favorites = () => {
                 <title>My Favorites</title>
                 <meta name="description" content="View your favorite items" />
             </Helmet>
+            <Breadcrumbs links={breadcrumbsLinks} />
             <div className="p-4 mt-6">
                 <h1 className="text-2xl font-bold mb-4">My Favorites</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { fetchItems, fetchCategories } from '../data/db';
 import ItemCard from '../components/ItemCard';
 import ItemCardSkeleton from '../components/skeleton/ItemCardSkeleton';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import localData from '../json/locals.json';
 import Select from 'react-select';
+import {Helmet} from "react-helmet-async";
 
 const Listings = () => {
     const { t } = useTranslation();
@@ -94,6 +96,12 @@ const Listings = () => {
         return matchesSearch && matchesCategory && matchesLocation && matchesPriceRange && matchesServiceType;
     });
 
+    // Define breadcrumbsLinks only after items are fetched
+    const breadcrumbsLinks = [
+        { label: 'Home', path: '/' },
+        { label: 'Anúncios', path: '/listings' },
+    ];
+
     if (loading) {
         return (
             <div className="px-4 py-6">
@@ -112,6 +120,12 @@ const Listings = () => {
     }
 
     return (
+        <>
+        <Helmet>
+            <title>{t('seo_title')}</title>
+            <meta name='description' content={t('seo_description')} />
+        </Helmet>
+        <Breadcrumbs links={breadcrumbsLinks} />
         <div className="px-4 py-6">
             <h1 className="text-2xl font-bold mb-4 capitalize">{t('Todos os anúncios')}</h1>
 
@@ -194,6 +208,7 @@ const Listings = () => {
                 )}
             </div>
         </div>
+        </>
     );
 };
 
