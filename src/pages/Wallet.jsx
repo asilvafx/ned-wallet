@@ -32,7 +32,6 @@ const Wallet = () => {
                     } else {
                         setError('User  data not found.');
                     }
-                    console.log(userData);
                 }
             } catch (fetchError) {
                 setError('Failed to fetch user data.');
@@ -83,10 +82,10 @@ const Wallet = () => {
                         <span className="text-primary">≃ 232.5 EUR</span>
                     </div>
                     <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                        <div className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
+                        <Link to="/buy" className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
                             <MdCurrencyExchange className="text-2xl" />
                             <span className="font-semibold">Comprar NED</span>
-                        </div>
+                        </Link>
                         <Link to="/receive" className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
                             <IoQrCode className="text-2xl" />
                             <span className="font-semibold">Receber</span>

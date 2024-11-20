@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Favorites.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Favorites.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Listings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Listings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Wallet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Wallet.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +82,7 @@
       <workItem from="1731623551027" duration="7754000" />
       <workItem from="1731678316431" duration="44129000" />
       <workItem from="1731857679963" duration="59746000" />
-      <workItem from="1732125591282" duration="3487000" />
+      <workItem from="1732125591282" duration="3792000" />
     </task>
     <servers />
   </component>
@@ -127,6 +119,12 @@
           <url>file://$PROJECT_DIR$/src/components/SearchBar.jsx</url>
           <line>81</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/Wallet.jsx</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

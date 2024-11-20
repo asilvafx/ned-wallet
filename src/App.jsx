@@ -19,6 +19,7 @@ const ItemView = lazy(() => import('./pages/ItemView'));
 const Walkthrough = lazy(() => import('./pages/Walkthrough'));
 const Receive = lazy(() => import('./pages/Receive'));
 const Send = lazy(() => import('./pages/Send'));
+const Buy = lazy(() => import('./pages/Buy'));
 
 
 // Load Components
@@ -139,6 +140,7 @@ const App = () => {
                             <Route path="/wallet" element={isSignedIn ? <Wallet /> : <Navigate to="/connect" />} />
                             <Route path="/receive" element={isSignedIn ? <Receive /> : <Navigate to="/connect" />} />
                             <Route path="/send" element={isSignedIn ? <Send /> : <Navigate to="/connect" />} />
+                            <Route path="/buy" element={isSignedIn ? <Buy /> : <Navigate to="/connect" />} />
                         </Routes>
                     </div>
 
