@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import { IoQrCode, IoSend } from "react-icons/io5";
 import { MdCurrencyExchange } from "react-icons/md";
 import { fetchUserData } from '../data/db';
+import { IoIosRefresh } from "react-icons/io";
 
 const Wallet = () => {
     const { t } = useTranslation();
@@ -30,6 +31,7 @@ const Wallet = () => {
                     } else {
                         setError('User  data not found.');
                     }
+                    console.log(userData);
                 }
             } catch (fetchError) {
                 setError('Failed to fetch user data.');
@@ -52,23 +54,28 @@ const Wallet = () => {
     return (
         <>
             <Helmet>
-                <title>{t('My Wallet')}</title>
+                <title>{t('Carteira')}</title>
                 <meta name='description' content={t('Manage your wallet')} />
             </Helmet>
 
             <div className="px-4 mt-6">
-                <h1 className="text-xl mb-4">My Wallet</h1>
-                <div className="bg-secondary border rounded-lg p-4 gap-2 w-full flex flex-col justify-center items-center text-center">
-                    <div className="w-full relative mb-8">
-                        <span className="font-normal text-xs md:text-sm text-gray-600 flex flex-nowrap items-center gap-1 mt-2 absolute left-0 top-0">
-                            <GiWallet />
-                            {userInfo?.wallet_pk && userInfo.wallet_pk.length > 10 ? `${userInfo.wallet_pk.slice(0, 5)}...${userInfo.wallet_pk.slice(-4)}` : userInfo.wallet_pk}
-                        </span>
+                <h1 className="text-xl mb-4">Carteira</h1>
+                <div className="bg-secondary border p-4 rounded-lg mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                    <span className="font-normal text-xs md:text-sm text-gray-600 flex flex-nowrap items-center gap-1">
+                    <GiWallet className="text-gray-500" />
+                    {userInfo?.wallet_pk && userInfo.wallet_pk.length > 10 ? `${userInfo.wallet_pk.slice(0, 5)}...${userInfo.wallet_pk.slice(-4)}` : userInfo.wallet_pk}
+                    </span>
+                     <Link to={`/wallet`} className="inline-flex flex-nowrap gap-1 items-center text-sm">
+                         <IoIosRefresh /> Atualizar
+                     </Link>
                     </div>
-                    <span className="text-lg md:text-xl font-semibold">{userInfo?.last_balance ? parseFloat(userInfo.last_balance).toFixed(4) : "0.0000"} NED</span>
-                    <span className="text-sm font-normal mb-4 text-primary">≃ 0.00 EUR</span>
-
-                    <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <h2 className="text-3xl font-bold mb-2">18.4100 NED</h2>
+                    <div className="flex items-center justify-between">
+                        <span>Saldo Disponível</span>
+                        <span className="text-primary">≃ 232.5 EUR</span>
+                    </div>
+                    <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                         <div className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
                             <MdCurrencyExchange className="text-2xl" />
                             <span className="font-semibold">Comprar NED</span>
@@ -83,6 +90,7 @@ const Wallet = () => {
                         </div>
                     </div>
                 </div>
+
             </div>
 
             {/* User Latest Transactions Section */}
@@ -93,19 +101,19 @@ const Wallet = () => {
                         <span>Ver todos →</span>
                     </Link>
                 </div>
-                <div className="bg-secondary border rounded-lg p-4 w-full">
-                    <ul>
-                        <li className="flex justify-between py-2 border-b">
+                <div className="p-0 w-full">
+                    <ul className="flex flex-col gap-4">
+                        <li className="flex justify-between p-4 border bg-secondary rounded-md">
                             <span>Transaction 1</span>
                             <span>-0.500 NED</span>
                         </li>
-                        <li className="flex justify-between py-2 border-b">
+                        <li className="flex justify-between p-4 border bg-secondary rounded-md">
                             <span>Transaction 2</span>
-                            <span>-1.000 NED</span>
+                            <span>-0.500 NED</span>
                         </li>
-                        <li className="flex justify-between py-2 border-b">
+                        <li className="flex justify-between p-4 border bg-secondary rounded-md">
                             <span>Transaction 3</span>
-                            <span>+2.000 NED</span>
+                            <span>-0.500 NED</span>
                         </li>
                     </ul>
                 </div>

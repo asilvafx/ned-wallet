@@ -59,64 +59,63 @@ const Connect = () => {
             const widResponse = await fetchUserData(nullifierHash);
 
             if (widResponse) {
-                if (widResponse.message && widResponse.message.length > 0) {
-                    const userResponse = widResponse.message[0];
-                    let walletBalance = parseFloat("0.0000");
-                    const contract = new web3.eth.Contract(balanceOfABI, WEB3_TOKEN_CONTRACT);
-                    try {
-                        const result = await contract.methods.balanceOf(userResponse.wallet_pk).call();
-                        const formattedResult = parseFloat(web3.utils.fromWei(result, "ether"));
-                        walletBalance = formattedResult.toFixed(4);
+                console.log('Updating account..');
+                const userResponse = widResponse[0];
 
-                        const balanceData = {
-                            last_balance: walletBalance
-                        }
+                Cookies.set('isLoggedIn', 'true', { path: '', secure: true, sameSite: 'strict' });
+                Cookies.set('uid', nullifierHash, { path: '', secure: true, sameSite: 'strict' });
 
-                        await updateUserBalance(nullifierHash, balanceData)
-                    } catch (error) {
-                        console.log(error);
-                        alert('Oops! Falha ao buscar informações da conta.');
-                        return false;
+
+                setVerified(true);
+
+                let walletBalance = parseFloat("0.0000");
+                const contract = new web3.eth.Contract(balanceOfABI, WEB3_TOKEN_CONTRACT);
+                try {
+                    const result = await contract.methods.balanceOf(decryptPassword(userResponse.wallet_pk)).call();
+                    const formattedResult = parseFloat(web3.utils.fromWei(result, "ether"));
+                    walletBalance = formattedResult.toFixed(4);
+
+                    const balanceData = {
+                        last_balance: walletBalance
                     }
 
+                    await updateUserBalance(nullifierHash, balanceData)
+                } catch (error) {
+                    console.log(error);
+                    return;
+                }
+
+            } else {
+                console.log('Creating new account..');
+                const walletAccount = web3.eth.accounts.create();
+                const walletBalance = parseFloat("0.0000");
+
+                const userData = {
+                    world_id: nullifierHash,
+                    wallet_pk: walletAccount.address,
+                    wallet_sk: encryptPassword(walletAccount.privateKey),
+                    last_balance: walletBalance
+                }
+
+                const saveUserResponse = await axios.post(`${BaseUrl}/accounts`, userData, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${Key}`,
+                    },
+                });
+
+                if (saveUserResponse.data.status === 'success') {
                     Cookies.set('isLoggedIn', 'true', { path: '', secure: true, sameSite: 'strict' });
                     Cookies.set('uid', nullifierHash, { path: '', secure: true, sameSite: 'strict' });
 
                     setVerified(true);
                 } else {
-                    const walletAccount = web3.eth.accounts.create();
-                    const walletBalance = parseFloat("0.0000");
-
-                    const userData = {
-                        world_id: nullifierHash,
-                        wallet_pk: walletAccount.address,
-                        wallet_sk: encryptPassword(walletAccount.privateKey),
-                        last_balance: walletBalance
-                    }
-
-                    const saveUserResponse = await axios.post(`${BaseUrl}/accounts`, userData, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${Key}`,
-                        },
-                    });
-
-                    if (saveUserResponse.data.status === 'success') {
-                        Cookies.set('isLoggedIn', 'true', { path: '', secure: true, sameSite: 'strict' });
-                        Cookies.set('uid', nullifierHash, { path: '', secure: true, sameSite: 'strict' });
-
-                        setVerified(true);
-                    } else {
-                        console.log(saveUserResponse.data);
-                        alert('Ops! Algo deu errado, tenta novamente mais tarde.');
-                        return false;
-                    }
+                    console.log(saveUserResponse.data);
+                    alert('Ops! Algo deu errado, tenta novamente mais tarde.');
+                    return false;
                 }
-            } else {
-                alert('Algo deu errado. Por favor, tenta novamente mais tarde.');
-                console.log(widResponse.data);
-                return false;
             }
+
         } catch (error) {
             console.error('Erro durante a verificação:', error);
         }

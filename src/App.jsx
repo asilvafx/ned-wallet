@@ -10,7 +10,6 @@ const Listings = lazy(() => import('./pages/Listings'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Create = lazy(() => import('./pages/Create'));
 const Favorites = lazy(() => import('./pages/Favorites'));
-const Search = lazy(() => import('./pages/Search'));
 const Messages = lazy(() => import('./pages/Messages'));
 const Wallet = lazy(() => import('./pages/Wallet'));
 const Logout = lazy(() => import('./pages/Logout'));
@@ -110,7 +109,6 @@ const App = () => {
                             <Route path="/listings" element={<Listings />} />
                             <Route path="/listings/:categoryId" element={<Listings />} />
                             <Route path="/create" element={<Create />} />
-                            <Route path="/search" element={<Search />} />
                             <Route path="/favorites" element={<Favorites />} />
                             <Route path="/logout" element={<Logout />} />
                             <Route path="/chat" element={<Messages />} />

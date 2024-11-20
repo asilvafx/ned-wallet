@@ -33,7 +33,7 @@ const Offcanvas = ({ show, onClose }) => {
     const handleSearchSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission
         if (searchQuery.trim()) {
-            navigate(`/search?query=${encodeURIComponent(searchQuery)}`); // Navigate to the search page with the query
+            navigate(`/listings?query=${encodeURIComponent(searchQuery)}`); // Navigate to the search page with the query
             onClose(); // Close the offcanvas after submitting
         }
     };
@@ -46,7 +46,7 @@ const Offcanvas = ({ show, onClose }) => {
                 <div className="w-full relative sticky bg-color top-0 left-0 right-0 pt-3 pb-2 px-2 mb-4">
 
                     <Link to="/" className="relative">
-                        <img src={`${SiteUrl}/public/uploads/files/ned_mini.png`} className="h-10 w-auto filter invert" alt="Logo" />
+                        <img src={`${SiteUrl}/public/uploads/files/ned_mini.png`} className="h-10 w-auto site-logo" alt="Logo" />
                     </Link>
                     <button
                         onClick={onClose}
@@ -59,15 +59,15 @@ const Offcanvas = ({ show, onClose }) => {
 
                 <h3 className="text-lg font-semibold mb-2 text-gray-500">Pesquisa</h3>
                 <div className="items-center text-sm mb-4">
-                    <form onSubmit={handleSearchSubmit} className="flex items-center border rounded-lg">
+                    <form onSubmit={handleSearchSubmit} className="flex items-center border rounded-lg bg-secondary">
                         <input
                             type="text"
                             placeholder="O que estás à procura?"
-                            className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-md"
+                            className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-md bg-transparent"
                             value={searchQuery} // Bind input value to state
                             onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
                         />
-                        <button type="submit" className="bg-secondary border-l px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
+                        <button type="submit" className="bg-secondary border-l border-gray-300 px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
                             <FaSearch className="text-xl p-1 text-color" />
                         </button>
                     </form>

@@ -10,8 +10,9 @@ import { FaSearch } from "react-icons/fa";
 import Cookies from 'js-cookie';
 import { TbDotsVertical } from "react-icons/tb";
 import { fetchUserData, fetchCategories } from "../data/db";
-import Offcanvas from './Offcanvas';
 import { SiteUrl } from "../data/api";
+import Offcanvas from './Offcanvas';
+import Avatar from "./Avatar";
 import HeaderSkeleton from "./skeleton/HeaderSkeleton";
 
 const Header = () => {
@@ -59,7 +60,7 @@ const Header = () => {
     const handleSearchSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission
         if (searchQuery.trim()) {
-            navigate(`/search?query=${encodeURIComponent(searchQuery)}`); // Navigate to the search page with the query
+            navigate(`/listings?query=${encodeURIComponent(searchQuery)}`); // Navigate to the search page with the query
             setSearchQuery(''); // Clear the search input after submitting
         }
     };
@@ -80,24 +81,24 @@ const Header = () => {
                             </span>
                     </button>
                     <Link to="/" className="relative">
-                        <img src={`${SiteUrl}/public/uploads/files/ned_full.png`} className="h-11 w-auto filter invert" alt="Logo" />
+                        <img src={`${SiteUrl}/public/uploads/files/ned_full.png`} className="h-11 w-auto site-logo" alt="Logo" />
                     </Link>
                 </div>
 
                 <div className="flex items-center gap-2 ">
                     <div className="items-center gap-2 hidden md:flex">
                         <div className="items-center text-sm hidden lg:flex">
-                            <form onSubmit={handleSearchSubmit} className="flex items-center border rounded-lg">
+                            <form onSubmit={handleSearchSubmit} className="flex items-center border rounded-lg bg-secondary">
                                 <input
                                     type="text"
                                     placeholder="O que estás à procura?"
-                                    className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-xs"
+                                    className="w-full h-full py-2 px-4 rounded-l-lg focus:outline-none text-xs bg-transparent"
                                     value={searchQuery} // Bind input value to state
                                     onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
                                 />
                                 <span>
                                         <button type="submit"
-                                                className="bg-secondary border-l w-full px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
+                                                className="bg-secondary border-l border-gray-300 w-full px-2 py-2 flex items-center gap-2 rounded-r-lg transition duration-200">
                                             <FaSearch className="text-xl p-1 text-color" />
                                         </button>
                                     </span>
@@ -152,7 +153,7 @@ const Header = () => {
                     <>
                         <Link to="/wallet">
                             <button className="text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
-                                <span className="bg-primary text-alt p-1 flex items-center justify-center w-5 h-5 text-xs rounded-full">U</span>
+                                <Avatar id={walletId} size={16} round={true} density={1} />
                                 {userInfo.last_balance !== undefined && !isNaN(userInfo.last_balance)
                                     ? parseFloat(userInfo.last_balance).toFixed(4)
                                     : "0.0000"}
@@ -177,7 +178,7 @@ const Header = () => {
         </div>
         <div className="flex-nowrap justify-start items-center w-full px-2 pt-4 pb-2 hidden md:flex overflow-x-auto whitespace-nowrap">
             {categories.map(category => (
-                <Link to={`/${category.emoji}`} key={category.id} className="text-sm rounded-lg flex items-center gap-2 mr-4 p-2 bg-secondary ring-1 ring-gray-800 transition duration-200">
+                <Link to={`/listings?category=${category.name}`} key={category.id} className="text-sm rounded-lg flex items-center gap-2 mr-4 p-2 bg-secondary ring-1 ring-gray-800 transition duration-200">
                     <span className="text-center text-md">{category.name}</span>
                 </Link>
             ))}

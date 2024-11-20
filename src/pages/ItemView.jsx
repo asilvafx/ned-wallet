@@ -10,7 +10,6 @@ import { FaRegHeart } from "react-icons/fa6";
 import Avatar from "../components/Avatar";
 import Modal from '../components/Modal';
 
-
 const ItemView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -60,7 +59,7 @@ const ItemView = () => {
                     setIsLiked(fetchedItem.isLiked); // Assuming your fetched item has an isLiked property
                 }
 
-                if(fetchedItem){
+                if (fetchedItem) {
                     const fetchedAuthor = await fetchUserData(fetchedItem.author);
                     setAuthor(fetchedAuthor);
                 }
@@ -102,12 +101,14 @@ const ItemView = () => {
 
     // Function to go to the next image
     const nextImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.gallery.length);
+        const totalImages = item.gallery.length + (item.cover ? 1 : 0); // Include cover image if exists
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % totalImages);
     };
 
     // Function to go to the previous image
     const prevImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.gallery.length) % item .gallery.length);
+        const totalImages = item.gallery.length + (item.cover ? 1 : 0); // Include cover image if exists
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
     };
 
     // Function to select an image from thumbnails
@@ -128,11 +129,8 @@ const ItemView = () => {
     };
 
     const proceedToCheckout = () => {
-        // Here you can send the selected option and item data to the checkout/payment page
         console.log('Selected Option:', selectedOption);
         console.log('Item Data:', item);
-        // Navigate to checkout page with the selected option and item data
-        // navigate('/checkout', { state: { selectedOption, item } });
         closeModal();
     };
 
@@ -167,9 +165,12 @@ const ItemView = () => {
     const breadcrumbsLinks = [
         { label: 'Home', path: '/' },
         { label: 'Anúncios', path: '/listings' },
-        { label: item?.category || "NA", path: `/listings/${item?.category || ''}` },
+        { label: item?.category || "NA", path: `/listings?category=${item?.category || ''}` },
         { label: item?.name || "NA", path: `/listing/${id}` },
     ];
+
+    const totalImages = item.gallery.length > 0 ? item.gallery.length : 0; // Count gallery images
+    const imagesToDisplay = totalImages > 0 ? [item.cover, ...item.gallery] : [item.cover]; // Include cover image
 
     return (
         <>
@@ -183,41 +184,36 @@ const ItemView = () => {
                     <h1 className="text-2xl font-bold">{item.name}</h1>
                     <button
                         onClick={isLiked ? handleUnlike : handleLike}
-                        className={`inline-flex gap-2 items-center px-4 py-2 rounded ${isLiked ? 'bg-red-500 text-white' : 'bg-gray-300'}`}
+                        className={`inline-flex gap-2 items-center px-4 py-2 rounded ${isLiked ? 'bg-red-500 text-white' : ''}`}
                     >
                         <FaRegHeart />
-                        {isLiked ? 'Unlike' : 'Like'}
+                        {isLiked ? 'Remover' : 'Guardar'}
                     </button>
                 </div>
 
-                {item.gallery.length > 0 ? (
-                    <div className="relative w-full h-64"> {/* Container for the slider */}
-                        <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2"></button>
-                        <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
-                            <div className="flex items-center justify-center h-full"> {/* Center the image */}
-                                <img src={item.gallery[currentImageIndex]} alt={`Gallery image ${currentImageIndex + 1}`} className="w-full h-full object-cover rounded-md" />
-                            </div>
+                {/* Gallery Slider Section */}
+                <div className="relative w-full h-64"> {/* Container for the slider */}
+                    <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2">❮</button>
+                    <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
+                        <div className="flex items-center justify-center h-full"> {/* Center the image */}
+                            <img src={imagesToDisplay[currentImageIndex]} alt={`Gallery image ${currentImageIndex + 1}`} className="w-full h-full object-cover rounded-md" />
                         </div>
-                        <button onClick={nextImage} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2">❯</button>
                     </div>
-                ) : (
-                    <img src={item.cover} alt={item.name} className="w-full h-64 object-cover rounded-md mb-4" />
-                )}
+                    <button onClick={nextImage} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2">❯</button>
+                </div>
 
                 {/* Thumbnails Section */}
-                {item.gallery.length > 0 && (
-                    <div className="flex space-x-2 mt-2">
-                        {item.gallery.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Thumbnail ${index + 1}`}
-                                className={`w-16 h-16 object-cover rounded cursor-pointer ${currentImageIndex === index ? 'border-2 border-blue-500' : ''}`}
-                                onClick={() => selectImage(index)}
-                            />
-                        ))}
-                    </div>
-                )}
+                <div className="flex space-x-2 mt-2">
+                    {imagesToDisplay.map((image, index) => (
+                        <img
+                            key={index}
+                            src={image}
+                            alt={`Thumbnail ${index + 1}`}
+                            className={`w-16 h-16 object-cover rounded cursor-pointer ${currentImageIndex === index ? 'border-2 border-blue-500 ' : ''}`}
+                            onClick={() => selectImage(index)}
+                        />
+                    ))}
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 mb-4">
                     <div className="flex flex-col gap-2">
@@ -252,14 +248,13 @@ const ItemView = () => {
                     <div className="sticky">
                         <div className="w-full md:w-[75%] md:ms-auto bg-secondary p-4 border rounded-lg sticky">
                             {/* Additional author information */}
-
                             <div className="flex flex-wrap gap-2 justify-between items-center">
-                            <span className="text-xl text-gray-500">Anunciante</span>
-                            <Link to="/" className="text-sm">
-                                Mostrar Perfil
-                            </Link>
+                                <span className="text-xl text-gray-500">Anunciante</span>
+                                <Link to="/" className="text-sm">
+                                    Mostrar Perfil
+                                </Link>
                             </div>
-                            <div className="flex flex-nowrap items-center gap-1 mt-4 mb-2 p-1">
+                            <div className="flex flex-nowrap items-center gap-2 mt-4 mb-2 p-1">
                                 <Avatar id={item.author} size={16} round={true} density={1} />
                                 <p className="text-primary">{item?.author && item.author.length > 10 ? `${item.author.slice(0, 5)}...${item.author.slice(-4)}` : item.author}</p>
                             </div>
@@ -306,8 +301,7 @@ const ItemView = () => {
             {modalOpen && (
                 <Modal onClose={closeModal}>
                     <div className="flex justify-between items-center">
-                        <h2 className="text-2xl font-bold mb-6">Escolha uma Opção</h2>
-
+                        <h2 className=" text-2xl font-bold mb-6">Escolha uma Opção</h2>
                     </div>
                     <div className="flex flex-col gap-4">
                         {['Meet in person', 'Mail Delivery', 'Pick-up'].map((option) => (

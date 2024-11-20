@@ -29,6 +29,9 @@
 header {
     z-index: 9;
 }
+[data-theme="dark"] .site-logo {
+    filter: invert(1);
+}
 .bottom-fixed {
     position: fixed;
     bottom: 0;

@@ -56,7 +56,7 @@ const Home = () => {
         // Set loadingSearchBar to false after 3 seconds
         const searchBarTimeout = setTimeout(() => {
             setLoadingSearchBar(false);
-        }, 1000);
+        }, 800);
 
         return () => {
             clearInterval(interval);

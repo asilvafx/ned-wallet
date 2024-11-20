@@ -29,7 +29,7 @@ const SearchBar = () => {
             city: selectedCity ? selectedCity.value : '',
             type: selectedType ? selectedType.value : '',
         }).toString();
-        navigate(`/search?${queryParams}`);
+        navigate(`/listings?${queryParams}`);
     };
 
     return (
