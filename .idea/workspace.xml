@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="" />
+    <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/custom.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,6 +82,7 @@
       <workItem from="1731678316431" duration="44129000" />
       <workItem from="1731857679963" duration="59746000" />
       <workItem from="1732125591282" duration="4130000" />
+      <workItem from="1732223032802" duration="391000" />
     </task>
     <servers />
   </component>
@@ -119,7 +123,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/pages/Wallet.jsx</url>
           <line>19</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
