@@ -104,7 +104,7 @@ const Listings = () => {
 
     if (loading) {
         return (
-            <div className="px-4 py-6">
+            <div className="px-4">
                 <h1 className="text-2xl font-bold mb-4 capitalize">{t('Todos os anúncios')}</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {Array.from({ length: 8 }).map((_, index) => (
@@ -136,12 +136,12 @@ const Listings = () => {
                     value={searchQuery}
                     onChange={handleSearchChange}
                     placeholder={t('Pesquisar produtos/serviços...')}
-                    className="border rounded px-4 py-2 w-full bg-secondary"
+                    className="border rounded-lg px-4 py-2 w-full bg-secondary"
                 />
             </div>
 
             {/* Filter Section */}
-            <div className="mb-4 flex flex-col md:flex-row gap-4">
+            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Select
                     id="category"
                     value={filters.category ? { value: filters.category, label: filters.category } : null}

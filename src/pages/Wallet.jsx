@@ -64,7 +64,7 @@ const Wallet = () => {
                 <meta name='description' content={t('Manage your wallet')} />
             </Helmet>
             <Breadcrumbs links={breadcrumbsLinks} />
-            <div className="px-4 mt-6">
+            <div className="px-4">
                 <h1 className="text-xl mb-4">Carteira</h1>
                 <div className="bg-secondary border p-4 rounded-lg mb-4">
                     <div className="flex items-center justify-between mb-2">

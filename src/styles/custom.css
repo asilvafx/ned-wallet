@@ -109,7 +109,8 @@ header {
 }
 .overflow-x-auto::-webkit-scrollbar {
     scrollbar-width: thin;
-    width: 16px;
+    width: 0.5em;
+    height: 0.5em;
 }
 
 .overflow-x-auto::-webkit-scrollbar-track {
@@ -122,4 +123,32 @@ header {
     background-color: var(--secondary-color);
     border-radius: 100px;
     border: 1px solid var(--border-color)
+}
+.ReactTags__selected {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+.ReactTags__tagInput, .ReactTags__tagInput input {
+    width: 100%;
+}
+.ReactTags__tagInput input {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color);
+}
+.ReactTags__tag {
+    padding: .3rem;
+    background: var(--alt-color);
+    color: var(--background-color);
+    border-radius: 5px;
+}
+.ReactTags__remove {
+    background: red;
+    padding: .1rem;
+    border-radius: 5px;
+    margin-left: 0.3rem;
 }

@@ -45,7 +45,7 @@ const Favorites = () => {
     if (!isLoggedIn) {
         return (
             <>
-                <NotLoggedIn text="Por favor, inicia sessão para veres os teus artigos e serviços favoritos" />
+                <NotLoggedIn text="Por favor, inicia sessão para veres os teus favoritos" />
             </>
         );
     }

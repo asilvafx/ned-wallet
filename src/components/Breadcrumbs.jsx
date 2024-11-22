@@ -5,7 +5,7 @@ import { IoChevronForward } from "react-icons/io5";
 
 const Breadcrumbs = ({ links }) => {
     return (
-        <nav className="flex p-4" aria-label="Breadcrumb">
+        <nav className="flex p-4 mt-4" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
                 <Link to="/">
                     <GoHomeFill className="text-gray-700 hover:text-primary" />

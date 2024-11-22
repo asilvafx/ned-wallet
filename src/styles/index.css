@@ -16,7 +16,7 @@
   :root {
     --background-color: var(--light-color);
     --secondary-color: #e9ebe8;
-    --card-color: #e9ebe8;
+    --card-color: rgba(0,0,0, 0.3);
     --alt-color: var(--dark-color);
     --text-color: #1e1e1e;
     --border-color: #e8e8e8;
@@ -25,7 +25,7 @@
   [data-theme='dark'] {
     --background-color: var(--dark-color);
     --secondary-color: #181818;
-    --card-color: #181818;
+    --card-color: rgba(0,0,0, 0.3);
     --alt-color: var(--light-color);
     --text-color: #e0e0e0;
     --border-color: #313131;

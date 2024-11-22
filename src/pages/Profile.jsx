@@ -122,7 +122,7 @@ const Profile = () => {
                 <meta name='description' content='User  profile page' />
             </Helmet>
             <Breadcrumbs links={breadcrumbsLinks} />
-            <div className="px-4 mt-6">
+            <div className="px-4">
                 <div className="bg-secondary border rounded-lg p-6 mb-6">
                     <div className="flex justify-between items-center mb-6">
                         <h1 className="text-2xl font-bold capitalize">O Meu Perfil</h1>
@@ -157,10 +157,16 @@ const Profile = () => {
                 </div>
 
                 <div className="bg-secondary border rounded-lg p-6">
-                    <h2 className="text-xl font-bold mb-4 capitalize flex items-center">
-                        <span className="flashing-bullet mr-2"></span>
-                        Anúncios Activos
-                    </h2>
+                    <div className="flex items-center justify-between gap-4 mb-4">
+                        <h2 className="text-xl font-bold capitalize flex items-center">
+                            <span className="flashing-bullet mr-2"></span>
+                            Anúncios Activos
+                        </h2>
+                        <Link to="/profile" className="text-sm text-gray-500 hover:text-primary">
+                            Ver todos →
+                        </Link>
+                    </div>
+
                     {/* User listings, replace with actual data */}
                     <div className="grid grid-cols-4 gap-2">
                         {items.map((item) => (
