@@ -100,10 +100,10 @@ const Create = () => {
         if (name === 'priceEUR') {
             const priceInEUR = parseFloat(value);
             if (!isNaN(priceInEUR)) {
-                const priceInNED = (priceInEUR / currentTokenPrice).toFixed(4); // Conversion from EUR to NED
+                const priceInNED = (priceInEUR / currentTokenPrice).toFixed(2); // Conversion from EUR to NED
                 setFormData((prevData) => ({
                     ...prevData,
-                    price: priceInNED || "0.0000", // Update NED price
+                    price: priceInNED || "0.00", // Update NED price
                     priceEUR: value, // Set the value from the input
                 }));
             } else {

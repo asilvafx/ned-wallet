@@ -11,17 +11,17 @@ const tokenPrice = async () => {
 
 // Function to get the current market price of MATIC
 // https://docs.google.com/spreadsheets/d/1wTTuxXt8n9q7C4NDXqQpI3wpKu1_5bGVmP9Xz0XGSyU/edit?pli=1&gid=0#gid=0
-const netPrice = () => {
+const netPrice = (crypto, fiat) => {
     return new Promise((resolve, reject) => {
-        let crypto = 'polygon-ecosystem-token'; // bitcoin, ethereum, solana, polygon-ecosystem-token,..
-        let currency = 'eur'; // eur, usd, inr, ..
+        // crypto = bitcoin, ethereum, solana, polygon-ecosystem-token,..
+        // currency = eur, usd, inr, ..
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=' + crypto + '&vs_currencies=' + currency);
+        xhr.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=' + crypto + '&vs_currencies=' + fiat);
 
         xhr.onload = function () {
             if (this.status === 200) {
                 const data = JSON.parse(this.responseText);
-                resolve(data[crypto][currency]); // Resolve with the price
+                resolve(data[crypto][fiat]); // Resolve with the price
             } else {
                 reject(new Error("Failed to fetch price")); // Reject on failure
             }
