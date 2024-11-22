@@ -2,19 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/web3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Breadcrumbs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Breadcrumbs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/abi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Favorites.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Favorites.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Listings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Listings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Walkthrough.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Walkthrough.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Wallet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Wallet.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +98,7 @@
       <workItem from="1731678316431" duration="44129000" />
       <workItem from="1731857679963" duration="59746000" />
       <workItem from="1732125591282" duration="4130000" />
-      <workItem from="1732223032802" duration="9201000" />
+      <workItem from="1732223032802" duration="22504000" />
     </task>
     <servers />
   </component>
@@ -130,11 +135,6 @@
           <url>file://$PROJECT_DIR$/src/components/SearchBar.jsx</url>
           <line>81</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/pages/Wallet.jsx</url>
-          <line>19</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

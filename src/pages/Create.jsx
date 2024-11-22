@@ -14,6 +14,7 @@ import NotLoggedIn from "../components/NotLoggedIn";
 import { FiUploadCloud } from "react-icons/fi";
 import { FaChevronLeft } from "react-icons/fa6";
 import { MdOutlineHistory } from "react-icons/md";
+import {tokenPrice} from '../data/web3';
 
 const Create = () => {
     const navigate = useNavigate();
@@ -53,16 +54,20 @@ const Create = () => {
     const [charCountName, setCharCountName] = useState(0); // For character count in name
     const [charCountDesc, setCharCountDesc] = useState(0); // For character count in description
     const [selectedCountry, setSelectedCountry] = useState(null);
-
-    const NED_currentPrice = "0.54002110"; // Current price for conversion
+    const [currentTokenPrice, setCurrentTokenPrice] = useState(0);
 
     useEffect(() => {
         const loadCategories = async () => {
             const fetchedCategories = await fetchCategories();
             setCategories(fetchedCategories);
         };
-
         loadCategories();
+
+        const loadTokenPrice = async () => {
+        const fetchTokenPrice = await tokenPrice();
+        setCurrentTokenPrice(fetchTokenPrice);
+        }
+        loadTokenPrice();
     }, []);
 
     const handleChange = (e) => {
@@ -76,7 +81,7 @@ const Create = () => {
         if (name === 'price') {
             const priceInNED = parseFloat(value);
             if (!isNaN(priceInNED)) {
-                const priceInEUR = (priceInNED * NED_currentPrice).toFixed(2); // Conversion from NED to EUR
+                const priceInEUR = (priceInNED * currentTokenPrice).toFixed(2); // Conversion from NED to EUR
                 setFormData((prevData) => ({
                     ...prevData,
                     price: value, // Set the value from the input
@@ -95,7 +100,7 @@ const Create = () => {
         if (name === 'priceEUR') {
             const priceInEUR = parseFloat(value);
             if (!isNaN(priceInEUR)) {
-                const priceInNED = (priceInEUR / NED_currentPrice).toFixed(4); // Conversion from EUR to NED
+                const priceInNED = (priceInEUR / currentTokenPrice).toFixed(4); // Conversion from EUR to NED
                 setFormData((prevData) => ({
                     ...prevData,
                     price: priceInNED || "0.0000", // Update NED price

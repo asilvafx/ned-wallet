@@ -66,6 +66,31 @@ export const fetchUserData = async (walletId) => {
     }
 };
 
+// Function to withdraw funds
+export const withdrawFunds = async (walletAddress, points) => {
+    try {
+        const response = await axios.post(`${BaseUrl}/withdraw`, {
+            walletAddress,
+            points,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Key}`,
+            },
+        });
+
+        if (response.status === 200) {
+            return response.data; // Assuming the API returns some relevant data
+        } else {
+            console.error("Error in withdrawal response:", response);
+            return null; // Handle non-200 responses
+        }
+    } catch (error) {
+        console.error("Error during withdrawal:", error);
+        return null; // Return null on error
+    }
+};
+
 // Function to fetch user data based on wallet ID
 export const updateUserBalance = async (walletId, balanceData) => {
     try {

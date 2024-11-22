@@ -155,8 +155,8 @@ const Header = () => {
                             <button className="text-sm px-4 py-2 flex gap-2 items-center rounded-lg">
                                 <Avatar id={walletId} size={16} round={true} density={1} />
                                 {userInfo.last_balance !== undefined && !isNaN(userInfo.last_balance)
-                                    ? parseFloat(userInfo.last_balance).toFixed(4)
-                                    : "0.0000"}
+                                    ? parseFloat(userInfo.last_balance).toFixed(2)
+                                    : "0.00"}
                             </button>
                         </Link>
                         <Link to="/logout">
