@@ -107,6 +107,9 @@ header {
     font-weight: bolder !important;
     border-color: var(--primary-color) !important;
 }
+.cm__desc {
+    color: var(--text-color);
+}
 .overflow-x-auto::-webkit-scrollbar {
     scrollbar-width: thin;
     width: 0.5em;
