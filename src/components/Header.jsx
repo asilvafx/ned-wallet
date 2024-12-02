@@ -10,7 +10,7 @@ import { FaSearch } from "react-icons/fa";
 import Cookies from 'js-cookie';
 import { TbDotsVertical } from "react-icons/tb";
 import { fetchUserData, fetchCategories } from "../data/db";
-import { SiteUrl } from "../data/api";
+import { SITE_URL } from "../data/config";
 import Offcanvas from './Offcanvas';
 import Avatar from "./Avatar";
 import HeaderSkeleton from "./skeleton/HeaderSkeleton";
@@ -81,7 +81,7 @@ const Header = () => {
                             </span>
                     </button>
                     <Link to="/" className="relative">
-                        <img src={`${SiteUrl}/public/uploads/files/ned_full.png`} className="h-11 w-auto site-logo" alt="Logo" />
+                        <img src={`${SITE_URL}/public/uploads/files/ned_full.png`} className="h-11 w-auto site-logo" alt="Logo" />
                     </Link>
                 </div>
 

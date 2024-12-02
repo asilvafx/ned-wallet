@@ -155,6 +155,9 @@ header {
     border-radius: 5px;
     margin-left: 0.3rem;
 }
+#onramp-element iframe {
+    min-width: 100% !important;
+}
 .loader {
     display: flex;
     flex-direction: column;
@@ -172,4 +175,37 @@ header {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+.crypto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+.crypto-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+.crypto-item .crypto-name {
+    display: flex;
+    align-items: center;
+}
+.crypto-item .crypto-price {
+    margin-right: 10px;
+}
+.crypto-item .crypto-change {
+    color: #d32f2f;
+}
+.crypto-item .crypto-change.positive {
+    color: #4caf50;
+}
+@media (max-width: 768px) {
+    .crypto-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+sub {
+    bottom: 0.33rem;
 }

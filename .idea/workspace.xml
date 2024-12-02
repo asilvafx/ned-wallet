@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d9d0f937-df21-4a66-94e9-98364ebc508b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/Swap.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WWW/ui/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WWW/ui/assets/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/assets/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NotLoggedIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NotLoggedIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Offcanvas.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Offcanvas.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/skeleton/HeaderSkeleton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/skeleton/HeaderSkeleton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/web3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/web3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Buy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Buy.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Connect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Connect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Send.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Send.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Wallet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Wallet.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Withdraw.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/custom.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/WWW/app/lib/composer.json" />
+    </option>
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/WWW/composer.json</pharConfigPath>
@@ -31,7 +63,7 @@
       </set>
     </option>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/local/Cellar/php/8.3.11/bin/php">
     <include_path>
       <path value="$PROJECT_DIR$/WWW/app/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/WWW/app/vendor/pragmarx/google2fa" />
@@ -46,6 +78,9 @@
       <path value="$PROJECT_DIR$/WWW/app/vendor/intervention/image" />
     </include_path>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2oqG37nA32OsgDErzfmdewSrksl" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -54,20 +89,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/admin/Sites/TESTS/ned-wallet&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ai.zencoder.plugin.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/PhpStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PS-243.21565.202" />
+        <option value="bundled-php-predefined-a98d8de5180a-5fbe0c30323e-com.jetbrains.php.sharedIndexes-PS-243.21565.202" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,6 +132,9 @@
       <workItem from="1731857679963" duration="59746000" />
       <workItem from="1732125591282" duration="4130000" />
       <workItem from="1732223032802" duration="27257000" />
+      <workItem from="1732543356472" duration="1011000" />
+      <workItem from="1732556024272" duration="31133000" />
+      <workItem from="1732823096300" duration="149000" />
     </task>
     <servers />
   </component>
@@ -91,21 +143,6 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="396" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1731966643937">
-      <screen x="0" y="25" width="1280" height="721" />
-    </state>
-    <state x="396" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1280.721/-1280.-68.1280.999@0.25.1280.721" timestamp="1731966643937" />
-    <state x="446" y="239" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1440.817@0.25.1440.817" timestamp="1731679127906" />
-    <state x="387" y="334" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1732136993318">
-      <screen x="0" y="25" width="1440" height="817" />
-    </state>
-    <state x="387" y="334" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.817@0.25.1440.817" timestamp="1732136993318" />
-    <state x="341" y="212" width="597" height="548" key="find.popup" timestamp="1732136991048">
-      <screen x="0" y="25" width="1440" height="817" />
-    </state>
-    <state x="341" y="212" width="597" height="548" key="find.popup/0.25.1440.817@0.25.1440.817" timestamp="1732136991048" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -120,7 +157,16 @@
           <line>81</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/data/config.js</url>
+          <line>22</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

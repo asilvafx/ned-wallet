@@ -1,14 +1,15 @@
-import { BaseUrl, Key } from './api.js';
+import { API_URL, API_KEY } from '../data/config';
 import axios from 'axios';
+
 
 // Function to fetch user data based on wallet ID
 export const likeItem = async (walletId, itemId) => {
     try {
 
-        const response = await axios.post(`${BaseUrl}/watchlist`, itemId, {
+        const response = await axios.post(`${API_URL}/watchlist`, itemId, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             },
         });
         return response.data; // Return the response data
@@ -20,7 +21,7 @@ export const likeItem = async (walletId, itemId) => {
 
 // Function to delete item from watchlist
 export const unlikeItem = async (walledId, itemId) => {
-    const response = await axios.delete(`${BaseUrl}/watchlist/user/${walledId}`);
+    const response = await axios.delete(`${API_URL}/watchlist/user/${walledId}`);
     return response.data;
 };
 
@@ -28,11 +29,11 @@ export const unlikeItem = async (walledId, itemId) => {
 export const fetchUserMessages = async (walletId) => {
     try {
         const response = await axios({
-            url: `${BaseUrl}/messages/chat_from/${walletId}`,
+            url: `${API_URL}/messages/chat_from/${walletId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             }
         });
         return response.data.message; // Return the response data
@@ -46,11 +47,11 @@ export const fetchUserMessages = async (walletId) => {
 export const fetchUserData = async (walletId) => {
     try {
         const response = await axios({
-            url: `${BaseUrl}/accounts/world_id/${walletId}`,
+            url: `${API_URL}/accounts/world_id/${walletId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             }
         });
 
@@ -69,13 +70,13 @@ export const fetchUserData = async (walletId) => {
 // Function to withdraw funds
 export const withdrawFunds = async (walletAddress, points) => {
     try {
-        const response = await axios.post(`${BaseUrl}/withdraw`, {
+        const response = await axios.post(`${API_URL}/withdraw`, {
             walletAddress,
             points,
         }, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             },
         });
 
@@ -95,10 +96,10 @@ export const withdrawFunds = async (walletAddress, points) => {
 export const updateUserBalance = async (walletId, balanceData) => {
     try {
 
-        const response = await axios.put(`${BaseUrl}/accounts/world_id/${walletId}`, balanceData, {
+        const response = await axios.put(`${API_URL}/accounts/world_id/${walletId}`, balanceData, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             },
         });
         return response.data; // Return the response data
@@ -112,11 +113,11 @@ export const updateUserBalance = async (walletId, balanceData) => {
 export const fetchRelatedItems = async () => {
     try {
         const response = await axios({
-            url: `${BaseUrl}/items`,
+            url: `${API_URL}/items`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             }
         });
         return response.data.message; // Return the response data
@@ -130,11 +131,11 @@ export const fetchRelatedItems = async () => {
 export const fetchItems = async () => {
     try {
         const response = await axios({
-            url: `${BaseUrl}/items`,
+            url: `${API_URL}/items`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             }
         });
         return response.data.message; // Return the response data
@@ -148,11 +149,11 @@ export const fetchItems = async () => {
 export const fetchItemData = async (itemId) => {
     try {
         const response = await axios({
-            url: `${BaseUrl}/items/uid/${itemId}`,
+            url: `${API_URL}/items/uid/${itemId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Key}`,
+                'Authorization': `Bearer ${API_KEY}`,
             }
         });
         return response.data.message[0] || response.data.message; // Return the response data

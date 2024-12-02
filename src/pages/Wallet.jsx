@@ -12,6 +12,7 @@ import WalletSkeleton from '../components/skeleton/WalletSkeleton';
 import { fetchUserData } from '../data/db';
 import { WEB3_TOKEN_SYMBOL, SITE_FIAT_CURRENCY_CODE } from '../data/config';
 import {tokenPrice, getBalance} from "../data/web3";
+import { RiExchange2Fill } from "react-icons/ri";
 
 const Wallet = () => {
     const { t } = useTranslation();
@@ -19,7 +20,6 @@ const Wallet = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [userBalance, setUserBalance] = useState("0.00");
     const [userBalanceFiat, setUserBalanceFiat] = useState("0.00");
 
     const isLoggedIn = Cookies.get('isLoggedIn');
@@ -35,11 +35,9 @@ const Wallet = () => {
             try {
                 const userData = await fetchUserData(walletId);
                 if (userData) {
-                    const fetchedBalance = await getBalance(userData.wallet_pk);
                     const currentTokenPrice = await tokenPrice();
-                    const priceInEUR = (fetchedBalance * currentTokenPrice).toFixed(2); // Conversion from NED to EUR
+                    const priceInEUR = (userData.last_balance * currentTokenPrice).toFixed(2); // Conversion from NED to EUR
                     setUserInfo(userData);
-                    setUserBalance(fetchedBalance);
                     setUserBalanceFiat(priceInEUR);
                 } else {
                     setError('User  data not found.');
@@ -58,8 +56,8 @@ const Wallet = () => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            // Check if userInfo and userBalance are not null
-            if (userInfo && userBalance) {
+            // Check if userInfo are not null
+            if (userInfo) {
                 setLoading(false);
                 clearInterval(intervalId); // Stop the interval
             }
@@ -67,7 +65,7 @@ const Wallet = () => {
 
         // Cleanup function to clear the interval on component unmount
         return () => clearInterval(intervalId);
-    }, [userInfo, userBalance]); // Add dependencies to the effect
+    }, [userInfo]); // Add dependencies to the effect
 
 
     // Define breadcrumbsLinks only after items are fetched
@@ -103,7 +101,7 @@ const Wallet = () => {
                     <GiWallet className="text-gray-500" />
                     {userInfo?.wallet_pk && userInfo.wallet_pk.length > 10 ? `${userInfo.wallet_pk.slice(0, 5)}...${userInfo.wallet_pk.slice(-4)}` : userInfo.wallet_pk}
                     </span>
-                    <h2 className="text-3xl font-bold mb-2">{parseFloat(userBalance).toFixed(2)} {WEB3_TOKEN_SYMBOL}</h2>
+                    <h2 className="text-3xl font-bold mb-2">{parseFloat(userInfo.last_balance).toFixed(2)} {WEB3_TOKEN_SYMBOL}</h2>
                     <div className="flex items-center justify-between">
                         <span>Saldo Disponível</span>
                         <span className="text-primary">≃ {userBalanceFiat} {SITE_FIAT_CURRENCY_CODE}</span>
@@ -121,9 +119,9 @@ const Wallet = () => {
                             <IoSend className="text-2xl" />
                             <span className="font-semibold">Enviar</span>
                         </Link>
-                        <Link to="/withdraw" className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
-                            <IoSend className="text-2xl" />
-                            <span className="font-semibold">Levantar</span>
+                        <Link to="/swap" className="rounded-lg h-16 border bg-color flex flex-col gap-2 items-center justify-center p-2 text-sm shadow-sm">
+                            <RiExchange2Fill className="text-2xl" />
+                            <span className="font-semibold">Trocar</span>
                         </Link>
                     </div>
                 </div>

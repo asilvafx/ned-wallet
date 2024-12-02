@@ -17,8 +17,8 @@ const ItemView = lazy(() => import('./pages/ItemView'));
 const Walkthrough = lazy(() => import('./pages/Walkthrough'));
 const Receive = lazy(() => import('./pages/Receive'));
 const Send = lazy(() => import('./pages/Send'));
+const Swap = lazy(() => import('./pages/Swap.jsx'));
 const Buy = lazy(() => import('./pages/Buy'));
-const Withdraw = lazy(() => import('./pages/Withdraw'));
 
 // Load Components
 import CookiesAddon from './components/Cookies';
@@ -78,9 +78,7 @@ const App = () => {
     };
 
     if (loading) {
-        return (
-            <div id="loading">Loading...</div>
-        );
+        return <div id="loading">Loading...</div>;
     }
 
     return (
@@ -116,8 +114,8 @@ const App = () => {
                             <Route path="/wallet" element={isSignedIn ? <Wallet /> : <Navigate to="/connect" />} />
                             <Route path="/receive" element={isSignedIn ? <Receive /> : <Navigate to="/connect" />} />
                             <Route path="/send" element={isSignedIn ? <Send /> : <Navigate to="/connect" />} />
+                            <Route path="/swap" element={isSignedIn ? <Swap /> : <Navigate to="/connect" />} />
                             <Route path="/buy" element={isSignedIn ? <Buy /> : <Navigate to="/connect" />} />
-                            <Route path="/withdraw" element={isSignedIn ? <Withdraw /> : <Navigate to="/connect" />} />
                         </Routes>
                     </div>
                     <Footer />

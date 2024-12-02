@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, Link } from 'react-router-dom';
-import { BaseUrl, Key } from '../data/api';
+import { API_URL, API_KEY } from '../data/config';
 import { useDropzone } from 'react-dropzone';
 import { WithContext as ReactTags } from 'react-tag-input';
 import Select from 'react-select';
@@ -159,10 +159,10 @@ const Create = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`${BaseUrl}/items`, formData, {
+            const response = await axios.post(`${API_URL}/items`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${Key}`,
+                    'Authorization': `Bearer ${API_KEY}`,
                 },
             });
 

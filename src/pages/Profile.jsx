@@ -3,10 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import {BaseUrl, Key, SiteUrl} from '../data/api';
-import { fetchUserData } from '../data/db';
+import {API_URL, API_KEY, SITE_URL} from '../data/config';
+import { fetchItems, fetchUserData } from '../data/db';
 import NotLoggedIn from '../components/NotLoggedIn';
-import { fetchItems } from "../data/db";
 import ItemCard from "../components/ItemCard";
 import Breadcrumbs from "../components/Breadcrumbs";
 
@@ -75,10 +74,10 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`${BaseUrl}/accounts/world_id/${walletId}`, formData, {
+            const response = await axios.put(`${API_URL}/accounts/world_id/${walletId}`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${Key}`,
+                    'Authorization': `Bearer ${API_KEY}`,
                 },
             });
 
@@ -137,7 +136,7 @@ const Profile = () => {
                     </div>
                     <div className="flex items-center mb-4">
                         <img
-                            src={userInfo.profileImage || SiteUrl + '/public/uploads/files/placeholder.png' } // Use a placeholder if no image
+                            src={userInfo.profileImage || SITE_URL + '/public/uploads/files/placeholder.png' } // Use a placeholder if no image
                             alt="Profile"
                             className="w-24 h-24 rounded-full border-2 border-gray-300 mr-4 p-1"
                         />

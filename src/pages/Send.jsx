@@ -1,45 +1,136 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Scanner } from '@yudiel/react-qr-scanner';
-import Cookies from 'js-cookie';
-import { updateUserBalance } from '../data/db';
+import { withdrawFunds, fetchUserData } from '../data/db'; // Import the necessary functions
+import { tokenPrice, netPrice } from '../data/web3'; // Import token price function
 import Breadcrumbs from "../components/Breadcrumbs";
+import Cookies from 'js-cookie';
+import { MdQrCodeScanner } from "react-icons/md";
+import { FaCheckCircle, FaRegCheckCircle } from "react-icons/fa";
 
 const Send = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
-    const [recipientAddress, setRecipientAddress] = useState('');
-    const [amount, setAmount] = useState('');
+    const [walletAddress, setWalletAddress] = useState('');
+    const [points, setPoints] = useState(''); // Points in NED
+    const [pointsEUR, setPointsEUR] = useState(''); // Points in EUR
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [processing, setProcessing] = useState(false);
+    const [userInfo, setUserInfo] = useState(null);
     const [showScanner, setShowScanner] = useState(false);
+    const [fetchingUserData, setFetchingUserData] = useState(true);
+    const [currentBalance, setCurrentBalance] = useState('0.000');
+    const [currentTokenPrice, setCurrentTokenPrice] = useState(0); // State for current token price
+    const [networkPrice, setNetworkPrice] = useState(0); // State for current token price
+    const [finalPrice, setFinalPrice] = useState(0); // State for current token price
+
+    const isLoggedIn = Cookies.get('isLoggedIn');
     const walletId = Cookies.get('uid');
 
-    const handleSendTokens = async (e) => {
-        e.preventDefault();
-        setError('');
+    useEffect(() => {
+        const loadTokenPrice = async () => {
+            try {
+                const fetchTokenPrice = await tokenPrice();
+                setCurrentTokenPrice(fetchTokenPrice);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadTokenPrice();
 
-        // Validate input
-        if (!recipientAddress || !amount) {
-            setError('Please enter both recipient address and amount.');
+        const loadNetPrice = async () => {
+            try {
+                const fetchNetPrice = await netPrice('euro-coin', 'usd');
+                setNetworkPrice(fetchNetPrice);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadNetPrice();
+
+    }, []);
+
+    useEffect(() => {
+        if (!isLoggedIn || !walletId) {
+            toast.error('You must be logged in to access this page.');
             return;
         }
 
-        // Call API to update user balance (this is a placeholder, implement according to your API)
-        const result = await updateUserBalance(walletId, { recipientAddress, amount });
+        const fetchUserDataAsync = async () => {
+            try {
+                const data = await fetchUserData(walletId);
+                if (data) {
+                    setUserInfo(data);
+                    setCurrentBalance(data.last_balance || '0.000'); // Assuming balance is part of user data
+                } else {
+                    setError('User  data not found.');
+                }
+            } catch (error) {
+                console.error(error);
+                setError('Failed to fetch user data.');
+            } finally {
+                setFetchingUserData(false);
+            }
+        };
 
-        if (result) {
-            alert('Tokens sent successfully!');
-            navigate('/'); // Redirect to home or wallet page
-        } else {
-            setError('Failed to send tokens. Please try again.');
+        fetchUserDataAsync();
+    }, [isLoggedIn, walletId]);
+
+    // Function to handle NED input change
+    const handleNEDChange = (e) => {
+        const value = e.target.value;
+        setPoints(value);
+        setPointsEUR((value * currentTokenPrice).toFixed(2)); // Convert to EUR
+        const final_price = parseFloat(networkPrice*(value * currentTokenPrice)).toFixed(2);
+        setFinalPrice(final_price);
+    };
+
+    // Function to handle EUR input change
+    const handleEURChange = (e) => {
+        const value = e.target.value;
+        setPointsEUR(value);
+        setPoints((value / currentTokenPrice).toFixed(2)); // Convert to NED
+    };
+
+    const handleWithdraw = async (e) => {
+        e.preventDefault();
+        setError('');
+        setProcessing(true);
+
+        // Validate input
+        if (!walletAddress || !points) {
+            setError('Please enter both wallet address and points to withdraw.');
+            setProcessing(false);
+            return;
+        }
+
+        try {
+            const result = await withdrawFunds(walletAddress, points);
+            if (result) {
+                toast.success('Withdrawal successful!');
+                setWalletAddress('');
+                setPoints('');
+                setPointsEUR('');
+            } else {
+                setError('Failed to withdraw funds. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
+            setError('An error occurred while processing your request.');
+        } finally {
+            setProcessing(false);
         }
     };
 
     const handleScanSuccess = (data) => {
         if (data) {
-            setRecipientAddress(data); // Set scanned QR code data as recipient address
+            setWalletAddress(data); // Set scanned QR code data as recipient address
             setShowScanner(false); // Close the scanner
         }
     };
@@ -48,67 +139,144 @@ const Send = () => {
         console.error(err);
     };
 
-    // Define breadcrumbsLinks only after items are fetched
+    // Define breadcrumbsLinks
     const breadcrumbsLinks = [
         { label: 'Home', path: '/' },
         { label: 'Carteira', path: '/wallet' },
-        { label: 'Send', path: '/send' },
+        { label: 'Enviar', path: '/withdraw' },
     ];
+
+    if(loading) {
+        return (
+            <div>Loading..</div>
+        );
+    }
 
     return (
         <>
             <Helmet>
-                <title>{t('Send Tokens')}</title>
-                <meta name='description' content={t('Send tokens to another wallet')} />
+                <title>{t('Withdraw Funds')}</title>
+                <meta name='description' content={t('Withdraw your funds via crypto network')} />
             </Helmet>
             <Breadcrumbs links={breadcrumbsLinks} />
+
+            {/* Hero Section */}
+            <div className="px-4">
+                <div className="bg-primary text-white py-8 px-4 rounded-lg">
+                    <div className="container mx-auto text-center">
+                        <h1 className="text-3xl font-bold mb-2 capitalize">{t('Envia a tua crypto')}</h1>
+                        <p className="text-lg">{t('Recebe fácilmente os teus fundos na tua carteira de cryptomoedas.')}</p>
+                    </div>
+                </div>
+            </div>
+
             <div className="px-4 mt-6">
-                <h1 className="text-2xl font-bold mb-4">{t('Send Tokens')}</h1>
-                <form onSubmit={handleSendTokens} className="bg-secondary border rounded-lg p-6 mb-6">
+
+                <form onSubmit={handleWithdraw} className="bg-secondary border rounded-lg p-6 mb-6">
                     {error && <div className="text-red-500 mb-4">{error}</div>}
+                    {fetchingUserData ? (
+                        <div className="text-center py-4">Loading user data...</div>
+                    ) : (
+                        <div className="grid grid-cols-2 gap-4 mb-8">
+                            <div className="relative bg-card border rounded-lg pt-8 pb-4 px-4 border-primary">
+                                <span className="text-primary inline-flex gap-1 items-center absolute top-2 left-4 text-xs"><FaCheckCircle /> Selecionado</span>
+                                <div className="flex justify-between items-center">
+                                    <h2 className="text-xl font-bold">{t('NED Disponível:')}</h2>
+                                    <span className="text-xl font-bold">{parseFloat(currentBalance).toFixed(3)} NED</span>
+                                </div>
+                            </div>
+                            <div className="relative bg-card border rounded-lg pt-8 pb-4 px-4">
+                                <span className="text-gray-500 inline-flex gap-1 items-center absolute top-2 left-4 text-xs"><FaRegCheckCircle /> Selecionar</span>
+                                <div className="flex justify-between items-center">
+                                    <h2 className="text-xl font-bold">{t('MATIC Disponível:')}</h2>
+                                    <span className="text-xl font-bold">{parseFloat('0.0000').toFixed(3)} POL</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="recipientAddress">
-                            {t('Recipient Address')}
-                        </label>
-                        <div className="flex items-center">
-                            <input
-                                type="text"
-                                id="recipientAddress"
-                                value={recipientAddress}
-                                onChange={(e) => setRecipientAddress(e.target.value)}
-                                required
-                                className="py-2 px-4 w-full rounded-md border"
-                                placeholder="Enter wallet address"
-                            />
+                        <div className="w-full flex justify-between items-end mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="walletAddress">
+                                {t('Destinatário')}
+                            </label>
                             <button
                                 type="button"
                                 onClick={() => setShowScanner(true)}
-                                className="ml-2 bg-primary text-white rounded-md px-4 py-2"
+                                className="ml-2 bg-card border rounded-md text-color px-4 py-2 flex flex-nowrap items-center gap-2"
                             >
-                                {t('Scan QR')}
+                                <MdQrCodeScanner className="text-primary text-sm"/>
+                                <span className="text-xs">Scan QR-Code</span>
                             </button>
                         </div>
+
+                        <div className="w-full relative">
+                            <input
+                                type="text"
+                                id="walletAddress"
+                                value={walletAddress}
+                                onChange={(e) => setWalletAddress(e.target.value)}
+                                required
+                                className="py-2 px-4 w-full rounded-md border"
+                                placeholder={t('0x0000001..')}
+                            />
+                            <button
+                                type="button"
+
+                                className="ml-2 bg-transparent text-color px-4 py-2 absolute top-0 right-0"
+                            >
+                                <span className="text-xs uppercase">Paste</span>
+                            </button>
+                        </div>
+
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amount">
-                            {t('Amount')}
-                        </label>
-                        <input
-                            type="number"
-                            id="amount"
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                            required
-                            className="py-2 px-4 w-full rounded-md border"
-                            placeholder="Enter amount to send"
-                        />
+                    <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="relative">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amountNED">Quantidade
+                                (em
+                                NED)</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    id="amountNED"
+                                    value={points}
+                                    onChange={handleNEDChange}
+                                    placeholder="0.0000"
+                                    required
+                                    className="py-2 px-4 w-full rounded-md border"
+                                />
+                                <span className="text-gray-500 absolute top-2 right-2">$NED</span>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amountEUR">Quantidade (em EUR)</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    id="amountEUR"
+                                    value={pointsEUR}
+                                    onChange={handleEURChange}
+                                    placeholder="0.00"
+                                    required
+                                    className="py-2 px-5 w-full rounded-md border"
+                                />
+                                <span className="text-gray-500 absolute top-2 right-2">€</span>
+                                <span className="text-gray-500 top-2 left-2 absolute">≃</span>
+                            </div>
+                        </div>
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                        {t('Send Tokens')}
-                    </button>
+                    <div className="w-full flex flex-col gap-4 my-4">
+                        <span className="block text-gray-700 text-sm font-bold">Total a enviar</span>
+                        <span className="text-xl">= {finalPrice} POL</span>
+                        <button
+                            type="submit"
+                            className={`bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={processing}
+                        >
+                            {processing ? t('A Processar...') : t('Enviar')}
+                        </button>
+                    </div>
+
+
                 </form>
             </div>
 
@@ -132,6 +300,6 @@ const Send = () => {
             )}
         </>
     );
-};
+}
 
 export default Send;

@@ -1,8 +1,27 @@
 import Web3 from 'web3';
-import { WEB3_TOKEN_PROVIDER, WEB3_TOKEN_CONTRACT } from '../data/config';
+import axios from 'axios';
+import { API_URL, API_KEY, WEB3_TOKEN_PROVIDER, WEB3_TOKEN_CONTRACT } from '../data/config';
 
 // Initialize Web3
 const web3 = new Web3(new Web3.providers.HttpProvider(WEB3_TOKEN_PROVIDER));
+
+// Function to fetch Token information
+const fetchTokenData = async () => {
+    try {
+        const response = await axios({
+            url: `${API_URL}/token/chat_from/id/1}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`,
+            }
+        });
+        return response.data.message[0]; // Return the response data
+    } catch (error) {
+        console.error("Error fetching user messages:", error);
+        return null; // Return null on error
+    }
+};
 
 // Function to get the current token market price
 const tokenPrice = async () => {
@@ -94,4 +113,4 @@ const transferABI = [
     }
 ];
 
-export { tokenPrice, netPrice, getBalance, balanceOfABI, transferABI };
+export { fetchTokenData, tokenPrice, netPrice, getBalance, balanceOfABI, transferABI };

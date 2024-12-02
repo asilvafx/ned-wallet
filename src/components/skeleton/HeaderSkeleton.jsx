@@ -1,7 +1,6 @@
 import React from "react";
 import {TbDotsVertical} from "react-icons/tb";
 import {Link} from "react-router-dom";
-import {SiteUrl} from "../../data/api";
 import {FaSearch} from "react-icons/fa";
 import {FaPlus} from "react-icons/fa6";
 import {GoHeartFill, GoHomeFill} from "react-icons/go";
@@ -19,9 +18,7 @@ const HeaderSkeleton = () => {
                                 <TbDotsVertical className="text-lg" />
                             </span>
                     </button>
-                    <Link to="/" className="relative">
-                        <img src={`${SiteUrl}/public/uploads/files/ned_full.png`} className="h-11 w-auto filter invert"></img>
-                    </Link>
+                 
                 </div>
 
                 <div className="flex items-center gap-2 ">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchCategories } from "../data/db";
-import { SiteUrl } from "../data/api";
+import { SITE_URL } from "../data/config";
 import { FaSearch } from "react-icons/fa";
 
 const Offcanvas = ({ show, onClose }) => {
@@ -46,7 +46,7 @@ const Offcanvas = ({ show, onClose }) => {
                 <div className="w-full relative sticky bg-color top-0 left-0 right-0 pt-3 pb-2 px-2 mb-4">
 
                     <Link to="/" className="relative">
-                        <img src={`${SiteUrl}/public/uploads/files/ned_mini.png`} className="h-10 w-auto site-logo" alt="Logo" />
+                        <img src={`${SITE_URL}/public/uploads/files/ned_mini.png`} className="h-10 w-auto site-logo" alt="Logo" />
                     </Link>
                     <button
                         onClick={onClose}
